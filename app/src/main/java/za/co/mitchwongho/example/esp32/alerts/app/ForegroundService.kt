@@ -15,6 +15,7 @@ import android.os.IBinder
 import android.preference.PreferenceManager
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.LocalBroadcastManager
+import android.widget.Toast
 import no.nordicsemi.android.ble.BleManager
 import timber.log.Timber
 import za.co.mitchwongho.example.esp32.alerts.BuildConfig
@@ -37,10 +38,11 @@ class ForegroundService : Service() {
         val NOTIFICATION_CHANNEL = BuildConfig.APPLICATION_ID
         val VESPA_DEVICE_ADDRESS = "00:00:00:00:00:00"//""24:0A:C4:13:58:EA" // <--- YOUR ESP32 MAC address here
         val formatter = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
+        var bleManager: BleManager<LeManagerCallbacks>? = null
     }
 
     private var startId = 0;
-    lateinit var bleManager: BleManager<LeManagerCallbacks>
+
     var lastPost: Long = 0L
     /**
      * Called by the system when the service is first created.  Do not call this method directly.
@@ -51,19 +53,21 @@ class ForegroundService : Service() {
         Timber.w("onCreate")
         val remoteMacAddress = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(SettingsActivity.PREF_KEY_REMOTE_MAC_ADDRESS, VESPA_DEVICE_ADDRESS)
-
+        //Toast.makeText(this, remoteMacAddress, Toast.LENGTH_SHORT).show()
+        Timber.w("Mac = $remoteMacAddress")
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         val leDevice = bluetoothManager.adapter.getRemoteDevice(remoteMacAddress)
+
         bleManager = LEManager(this)
-        bleManager.setGattCallbacks(bleManagerCallback)
+        (bleManager as LEManager).setGattCallbacks(bleManagerCallback)
         if (bluetoothManager.adapter.state == BluetoothAdapter.STATE_ON) {
-            bleManager.connect(leDevice).enqueue()
+            (bleManager as LEManager).connect(leDevice).enqueue()
         }
 
         val intentFilter = IntentFilter(NotificationListener.EXTRA_ACTION)
         LocalBroadcastManager.getInstance(this).registerReceiver(localReceiver, intentFilter)
 
-        registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+        //registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
         registerReceiver(bluetoothReceiver, IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED))
     }
 
@@ -79,12 +83,22 @@ class ForegroundService : Service() {
         }
     }
 
+    fun findWatch(): Boolean{
+        return if (bleManager != null){
+            (bleManager as LEManager).findWatch()
+            true
+        } else {
+            false
+        }
+
+    }
+
     override fun onDestroy() {
         Timber.w("onDestroy")
         startId = 0
-        bleManager.close()
+        bleManager?.close()
         LocalBroadcastManager.getInstance(this).unregisterReceiver(localReceiver)
-        unregisterReceiver(tickReceiver)
+        //unregisterReceiver(tickReceiver)
         unregisterReceiver(bluetoothReceiver)
         (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancelAll()
 
@@ -206,19 +220,21 @@ class ForegroundService : Service() {
 
     }
 
-    var tickReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent?) {
-            if (System.currentTimeMillis() - lastPost > NOTIFICATION_DISPLAY_TIMEOUT) {
-                (bleManager as LEManager).writeTimeAndBatt(formatter.format(Date()))
-            }
-        }
-    }
+//    var tickReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context, intent: Intent?) {
+//            if (System.currentTimeMillis() - lastPost > NOTIFICATION_DISPLAY_TIMEOUT) {
+//                (bleManager as LEManager).writeTimeAndBatt(formatter.format(Date()))
+//            }
+//        }
+//    }
 
     var localReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if (bleManager.isConnected && intent != null) {
+            if ((bleManager as LEManager).isConnected && intent != null) {
                 Timber.d("onReceive")
+                var app = 0;
                 val notificationId = intent.getIntExtra(NotificationListener.EXTRA_NOTIFICATION_ID_INT, 0)
+                val notificationPackage = intent.getStringExtra(NotificationListener.EXTRA_PACKAGE)
                 val notificationAppName = intent.getStringExtra(NotificationListener.EXTRA_APP_NAME)
                 val notificationTitle = intent.getStringExtra(NotificationListener.EXTRA_TITLE)
                 val notificationBody = intent.getStringExtra(NotificationListener.EXTRA_BODY)
@@ -226,18 +242,33 @@ class ForegroundService : Service() {
                 val notificationDismissed = intent.getBooleanExtra(NotificationListener.EXTRA_NOTIFICATION_DISMISSED, true)
                 //
                 if (notificationDismissed) {
-                    val success = (bleManager as LEManager).writeTimeAndBatt(formatter.format(Date()))
+                    //val success = (bleManager as LEManager).writeTimeAndBatt(formatter.format(Date()))
                     lastPost = notificationTimestamp
-                    Timber.d("writeTime {success=$success}")
+                    //Timber.d("writeTime {success=$success}")
                 } else {
                     val buffer = StringBuffer(256)
-                    buffer.append(notificationTitle)
-                    buffer.append(":\"")
-                    buffer.append(notificationBody)
-                    buffer.append("\" via ")
-                    buffer.append(notificationAppName).append(" @ ")
-                    buffer.append(formatter.format(Date(notificationTimestamp)))
-                    val success = (bleManager as LEManager).writeNotification(buffer.substring(0, Math.min(buffer.length, 256)))
+                    app = if (notificationPackage == "com.whatsapp"){
+                        1
+                    } else {
+                        buffer.append(notificationAppName)
+                        buffer.append(": ")
+                        0
+                    }
+
+                    if (notificationTitle != "null"){
+                        buffer.append(notificationTitle)
+                        buffer.append(" - ")
+                    }
+                    if (notificationBody != "null"){
+                        buffer.append(notificationBody)
+                    }
+
+
+                    //buffer.append("\" via ")
+                    //buffer.append(notificationAppName)
+                    //buffer.append(" @ ")
+                    //buffer.append(formatter.format(Date(notificationTimestamp)))
+                    val success = (bleManager as LEManager).writeNotification(buffer.substring(0, Math.min(buffer.length, 256)),app)
                     lastPost = notificationTimestamp
                     Timber.d("writeMessage {success=$success}")
                 }
@@ -245,7 +276,7 @@ class ForegroundService : Service() {
         }
     }
 
-    val bluetoothReceiver = object : BroadcastReceiver() {
+    private val bluetoothReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent?.action?.equals(BluetoothAdapter.ACTION_STATE_CHANGED) == true) {
                 val state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)
@@ -258,13 +289,13 @@ class ForegroundService : Service() {
                         val leDevice = bluetoothManager.adapter.getRemoteDevice(remoteMacAddress)
 
                         bleManager = LEManager(context)
-                        bleManager.setGattCallbacks(bleManagerCallback)
-                        bleManager.connect(leDevice)
+                        (bleManager as LEManager).setGattCallbacks(bleManagerCallback)
+                        (bleManager as LEManager).connect(leDevice)
                     }
                     BluetoothAdapter.STATE_TURNING_OFF -> {
                         // TODO: 2018/01/03 close connections
-                        bleManager.disconnect()
-                        bleManager.close()
+                        (bleManager as LEManager).disconnect()
+                        (bleManager as LEManager).close()
                     }
                 }
             }
