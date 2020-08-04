@@ -4,7 +4,7 @@ Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongh
 
 ## Changes
 
-Modified code to send notifications to the DT78 smartwatch. 
+Modified code to send notifications to the smartwatch. 
 
 ## Dependencies
 
