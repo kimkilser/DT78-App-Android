@@ -18,33 +18,42 @@ import timber.log.Timber
 import za.co.mitchwongho.example.esp32.alerts.app.ForegroundService
 import za.co.mitchwongho.example.esp32.alerts.app.SettingsActivity
 import java.util.*
+import kotlin.concurrent.timerTask
 
 /**
  * Implements BLEManager
  */
 class LEManager : BleManager<LeManagerCallbacks> {
 
-    var espDisplayMessageCharacteristic: BluetoothGattCharacteristic? = null
-    var espDisplayTimeCharacteristic: BluetoothGattCharacteristic? = null
-    var espDisplayOrientationCharacteristic: BluetoothGattCharacteristic? = null
+    var dt78RxCharacteristic: BluetoothGattCharacteristic? = null
+    var dt78TxCharacteristic: BluetoothGattCharacteristic? = null
+
+
+//    var espDisplayMessageCharacteristic: BluetoothGattCharacteristic? = null
+//    var espDisplayTimeCharacteristic: BluetoothGattCharacteristic? = null
+//    var espDisplayOrientationCharacteristic: BluetoothGattCharacteristic? = null
 
     companion object {
         val MTU = 500
-        val ESP_SERVICE_UUID = UUID.fromString("3db02924-b2a6-4d47-be1f-0f90ad62a048")
-        val ESP_DISPLAY_MESSAGE_CHARACTERISITC_UUID = UUID.fromString("8d8218b6-97bc-4527-a8db-13094ac06b1d")
-        val ESP_DISPLAY_TIME_CHARACTERISITC_UUID = UUID.fromString("b7b0a14b-3e94-488f-b262-5d584a1ef9e1")
-        val ESP_DISPLAY_ORIENTATION_CHARACTERISITC_UUID = UUID.fromString("0070b87e-d825-43f5-be0c-7d86f75e4900")
+        val DT78_SERVICE_UUID = UUID.fromString("6e400001-b5a3-f393-e0a9-e50e24dcca9e")
+        val DT78_TX_CHARACTERISTIC = UUID.fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e")
+        val DT78_RX_CHARACTERISTIC = UUID.fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e")
+        var CONNECTED = false
+//        val ESP_SERVICE_UUID = UUID.fromString("3db02924-b2a6-4d47-be1f-0f90ad62a048")
+//        val ESP_DISPLAY_MESSAGE_CHARACTERISITC_UUID = UUID.fromString("8d8218b6-97bc-4527-a8db-13094ac06b1d")
+//        val ESP_DISPLAY_TIME_CHARACTERISITC_UUID = UUID.fromString("b7b0a14b-3e94-488f-b262-5d584a1ef9e1")
+//        val ESP_DISPLAY_ORIENTATION_CHARACTERISITC_UUID = UUID.fromString("0070b87e-d825-43f5-be0c-7d86f75e4900")
 
-        fun readBatteryLevel(context: Context): Int {
-            val intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
-            val batteryStatus: Intent? = context.registerReceiver(null, intentFilter)
-            val level = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
-            val scale = batteryStatus?.getIntExtra(BatteryManager.EXTRA_SCALE, -1) ?: -1
-
-            val batteryLevelPercent: Int = ((level.toFloat() / scale.toFloat()) * 100f).toInt()
-            Timber.d("readTimeAndBatt {level=$level,scale=$scale,batteryLevel=$batteryLevelPercent%}")
-            return batteryLevelPercent
-        }
+//        fun readBatteryLevel(context: Context): Int {
+//            val intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+//            val batteryStatus: Intent? = context.registerReceiver(null, intentFilter)
+//            val level = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
+//            val scale = batteryStatus?.getIntExtra(BatteryManager.EXTRA_SCALE, -1) ?: -1
+//
+//            val batteryLevelPercent: Int = ((level.toFloat() / scale.toFloat()) * 100f).toInt()
+//            Timber.d("readTimeAndBatt {level=$level,scale=$scale,batteryLevel=$batteryLevelPercent%}")
+//            return batteryLevelPercent
+//        }
     }
 
     constructor(context: Context) : super(context)
@@ -62,54 +71,116 @@ class LEManager : BleManager<LeManagerCallbacks> {
     /**
      * Write {@code message} to the remote device's characteristic
      */
-    fun writeNotification(message: String): Boolean {
-        return write(message)
+    fun writeNotification(message: String, app: Int): Boolean {
+        return write(message, app)
     }
+
 
     /**
      * Write {@code message} to the remote device's characteristic
      */
-    fun writeTimeAndBatt(message: String): Boolean {
-        //
-        // read battery level
-        val batteryLevelPercent = Companion.readBatteryLevel(context)
-        return writeTimeAndBatteryLevel(batteryLevelPercent, message)
+//    fun writeTimeAndBatt(message: String): Boolean {
+//        //
+//        // read battery level
+//        val batteryLevelPercent = Companion.readBatteryLevel(context)
+//        return writeTimeAndBatteryLevel(batteryLevelPercent, message)
+//    }
+
+
+
+    fun findWatch(): Boolean{
+        return if (isConnected && dt78TxCharacteristic != null){
+            requestMtu(MTU).enqueue()
+            val find = byteArrayOfInts(0xAB, 0x00, 0x03, 0xFF, 0x71, 0x80)
+            writeCharacteristic(dt78TxCharacteristic, find).enqueue()
+            true
+        } else {
+            false
+        }
+    }
+    private fun byteArrayOfInts(vararg ints: Int) = ByteArray(ints.size) {
+        pos -> ints[pos].toByte()
     }
 
-    private fun write(message: String): Boolean {
-        Timber.d("write {connected=$isConnected,hasCharacteristic=${espDisplayMessageCharacteristic != null}}")
-        return if (isConnected && espDisplayMessageCharacteristic != null) {
+    private fun write(message: String, app: Int): Boolean {
+        Timber.d("write {connected=$isConnected,hasCharacteristic=${dt78TxCharacteristic != null}}")
+        return if (isConnected && dt78TxCharacteristic != null) {
             requestMtu(MTU).enqueue()
-            writeCharacteristic(espDisplayMessageCharacteristic, message.toByteArray()).enqueue()
-            true
-        } else {
-            false
-        }
-    }
-    private fun writeTimeAndBatteryLevel(battLevel: Int, message: String): Boolean {
-        Timber.d("write {connected=$isConnected,hasCharacteristic=${espDisplayMessageCharacteristic != null}}")
-        return if (isConnected && espDisplayTimeCharacteristic != null) {
-            requestMtu(MTU).enqueue()
-            writeCharacteristic(espDisplayTimeCharacteristic, (battLevel.toChar() + message).toByteArray()).enqueue()
-            true
-        } else {
-            false
-        }
-    }
+            var msg = message
+            if (msg.length > 50){
+                msg = msg.substring(0,50)
+            }
+            val start = byteArrayOfInts(0xAB, 0x00)
+            val len = (msg.length + 5).toByte()
+            val type = if (app == 1){
+                byteArrayOfInts(0xFF, 0x72, 0x80, 0x0A, 0x02)
+            } else {
+                byteArrayOfInts(0xFF, 0x72, 0x80, 0x03, 0x02)
+            }
 
-    fun applyDisplayVertifically(): Boolean {
-        return if (isConnected && espDisplayOrientationCharacteristic != null) {
-            val displayOrientation = PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(SettingsActivity.PREF_KEY_FLIP_DISPLAY_VERTICALLY, false)
-            val flag = if (displayOrientation) 1 else 2
-            val barray = ByteArray(1)
-            barray.set(0, flag.toByte())
-            writeCharacteristic(espDisplayOrientationCharacteristic, barray).enqueue()
+            when {
+                msg.length <= 12 -> {
+                    val send = start + len + type + msg.toByteArray()
+                    writeCharacteristic(dt78TxCharacteristic, send).enqueue()
+                    Timber.d("Send type 0")
+                    Timber.d("Msg = $msg & Length = ${len-5}")
+                }
+                msg.length in 13..31 -> {
+
+                    val msg0 = msg.substring(0,12)
+                    val send = start + len + type + msg0.toByteArray()
+                    val msg1 = msg.substring(12,msg.length)
+                    val send1 = byteArrayOfInts(0x00) + msg1.toByteArray()
+                    writeCharacteristic(dt78TxCharacteristic, send).enqueue()
+                    writeCharacteristic(dt78TxCharacteristic, send1).enqueue()
+                    Timber.d("Msg = $msg & Length = ${len-5}")
+                    Timber.d("Send type 1")
+                }
+                msg.length > 31 -> {
+                    val msg0 = msg.substring(0,12)
+                    val send = start + len + type + msg0.toByteArray()
+                    val msg1 = msg.substring(12,31)
+                    val send1 = byteArrayOfInts(0x00) + msg1.toByteArray()
+                    val msg2 = msg.substring(31,msg.length)
+                    val send2 = byteArrayOfInts(0x01) + msg2.toByteArray()
+                    writeCharacteristic(dt78TxCharacteristic, send).enqueue()
+                    writeCharacteristic(dt78TxCharacteristic, send1).enqueue()
+                    writeCharacteristic(dt78TxCharacteristic, send2).enqueue()
+
+                    Timber.d("Send type 2")
+                    Timber.d("Msg = $msg & Length = ${len-5}")
+                }
+            }
+
             true
         } else {
             false
         }
     }
+//    private fun writeTimeAndBatteryLevel(battLevel: Int, message: String): Boolean {
+//        Timber.d("write {connected=$isConnected,hasCharacteristic=${dt78TxCharacteristic != null}}")
+//        return if (isConnected && espDisplayTimeCharacteristic != null) {
+//            requestMtu(MTU).enqueue()
+//            writeCharacteristic(espDisplayTimeCharacteristic, (battLevel.toChar() + message).toByteArray()).enqueue()
+//            true
+//        } else {
+//            false
+//        }
+//    }
+
+//    fun applyDisplayVertifically(): Boolean {
+//        return if (isConnected && espDisplayOrientationCharacteristic != null) {
+//            val displayOrientation = PreferenceManager.getDefaultSharedPreferences(context)
+//                    .getBoolean(SettingsActivity.PREF_KEY_FLIP_DISPLAY_VERTICALLY, false)
+//            val flag = if (displayOrientation) 1 else 2
+//            val barray = ByteArray(1)
+//            barray.set(0, flag.toByte())
+//            writeCharacteristic(espDisplayOrientationCharacteristic, barray).enqueue()
+//            true
+//        } else {
+//            false
+//        }
+//    }
 
     /**
      * Returns whether to connect to the remote device just once (false) or to add the address to white list of devices
@@ -147,21 +218,20 @@ class LEManager : BleManager<LeManagerCallbacks> {
          * @return `true` when the device has the required service
          */
         override fun isRequiredServiceSupported(gatt: BluetoothGatt): Boolean {
-            val gattService: BluetoothGattService? = gatt.getService(ESP_SERVICE_UUID)
-            if (espDisplayMessageCharacteristic == null) {
-                gattService?.getCharacteristic(ESP_DISPLAY_MESSAGE_CHARACTERISITC_UUID)?.writeType = BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE
-                espDisplayMessageCharacteristic = gattService?.getCharacteristic(ESP_DISPLAY_MESSAGE_CHARACTERISITC_UUID)
+            val gattService: BluetoothGattService? = gatt.getService(DT78_SERVICE_UUID)
+            if (dt78TxCharacteristic == null) {
+                gattService?.getCharacteristic(DT78_TX_CHARACTERISTIC)?.writeType = BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE
+                dt78TxCharacteristic = gattService?.getCharacteristic(DT78_TX_CHARACTERISTIC)
             }
-            if (espDisplayTimeCharacteristic == null) {
-                espDisplayTimeCharacteristic = gattService?.getCharacteristic(ESP_DISPLAY_TIME_CHARACTERISITC_UUID)
+            if (dt78RxCharacteristic == null) {
+                dt78RxCharacteristic = gattService?.getCharacteristic(DT78_RX_CHARACTERISTIC)
             }
-            if (espDisplayOrientationCharacteristic == null) {
-                espDisplayOrientationCharacteristic = gattService?.getCharacteristic(ESP_DISPLAY_ORIENTATION_CHARACTERISITC_UUID)
-            }
+//            if (espDisplayOrientationCharacteristic == null) {
+//                espDisplayOrientationCharacteristic = gattService?.getCharacteristic(ESP_DISPLAY_ORIENTATION_CHARACTERISITC_UUID)
+//            }
             return gattService != null
-                    && espDisplayMessageCharacteristic != null
-                    && espDisplayTimeCharacteristic != null
-                    && espDisplayOrientationCharacteristic != null
+                    && dt78RxCharacteristic != null
+                    && dt78TxCharacteristic != null
         }
 
 
@@ -204,14 +274,14 @@ class LEManager : BleManager<LeManagerCallbacks> {
         override fun initialize() {
             Timber.i("Initialising...")
 
-            enableNotifications(espDisplayTimeCharacteristic)
+            enableNotifications(dt78RxCharacteristic)
                     .done(SuccessCallback {
                         Timber.i("Successfully enabled DisplayMessageCharacteristic notifications")
                     })
                     .fail { device, status ->
                         Timber.w("Failed to enable DisplayMessageCharacteristic notifications")
                     }.enqueue()
-            enableIndications(espDisplayMessageCharacteristic)
+            enableIndications(dt78TxCharacteristic)
                     .done(SuccessCallback {
                         Timber.i("Successfully wrote message")
                     })
@@ -221,38 +291,38 @@ class LEManager : BleManager<LeManagerCallbacks> {
                     .enqueue()
 
 //            requestMtu(MTU).enqueue()
-            setNotificationCallback(espDisplayTimeCharacteristic)
+            setNotificationCallback(dt78RxCharacteristic)
                     .with(DataReceivedCallback { device, data ->
-                        Timber.i("Data received from ${device.address}")
+                        Timber.i("Data received from ${device.address} Data = ${data.size()}")
+                        var dat = ""
+                        for (i in 0 until data.size()){
+                            dat += String.format(" %02X",data.getByte(i))
+                        }
+                        Timber.i(dat)
                     })
-            enableNotifications(espDisplayTimeCharacteristic)
-                    .done(SuccessCallback {
-                        Timber.i("Successfully enabled DisplayTimeCharacteristic notifications")
-                    })
-                    .fail { device, status ->
-                        Timber.w("Failed to enable DisplayTimeCharacteristic notifications")
-                    }.enqueue()
-            enableIndications(espDisplayTimeCharacteristic)
-                    .done(SuccessCallback {
-                        Timber.i("Successfully wrote Time & Battery status")
-                    })
-                    .fail(FailCallback { device, status ->
-                        Timber.w("Failed to write Time & Battery status to ${device.address} - status: ${status}")
-                    }).enqueue()
-
-            val batteryLevelPercent = Companion.readBatteryLevel(context)
-            writeTimeAndBatteryLevel(batteryLevelPercent, ForegroundService.formatter.format(Date()))
+//            enableNotifications(espDisplayTimeCharacteristic)
+//                    .done(SuccessCallback {
+//                        Timber.i("Successfully enabled DisplayTimeCharacteristic notifications")
+//                    })
+//                    .fail { device, status ->
+//                        Timber.w("Failed to enable DisplayTimeCharacteristic notifications")
+//                    }.enqueue()
+//            enableIndications(espDisplayTimeCharacteristic)
+//                    .done(SuccessCallback {
+//                        Timber.i("Successfully wrote Time & Battery status")
+//                    })
+//                    .fail(FailCallback { device, status ->
+//                        Timber.w("Failed to write Time & Battery status to ${device.address} - status: ${status}")
+//                    }).enqueue()
+//
+//            val batteryLevelPercent = Companion.readBatteryLevel(context)
+//            writeTimeAndBatteryLevel(batteryLevelPercent, ForegroundService.formatter.format(Date()))
         }
 
-        /**
-         * This method should nullify all services and characteristics of the device.
-         * It's called when the device is no longer connected, either due to user action
-         * or a link loss.
-         */
+
         override fun onDeviceDisconnected() {
-            espDisplayMessageCharacteristic = null
-            espDisplayTimeCharacteristic = null
-            espDisplayOrientationCharacteristic = null
+            dt78RxCharacteristic = null
+            dt78TxCharacteristic = null
         }
     }
 }
