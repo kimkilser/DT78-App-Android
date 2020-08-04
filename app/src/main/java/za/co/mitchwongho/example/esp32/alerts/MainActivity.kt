@@ -24,14 +24,23 @@ class MainActivity : AppCompatActivity() {
     lateinit var fab: FloatingActionButton
     lateinit var menu: Menu
     var alertDialog: AlertDialog? = null
+    lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         fab = findViewById(R.id.fab)
+        button = findViewById(R.id.button)
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
+        button.setOnClickListener {
+            if (ForegroundService().findWatch()){
+                Toast.makeText(this, "Finding watch", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Watch not connected", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         fab.setOnClickListener({ view ->
 
