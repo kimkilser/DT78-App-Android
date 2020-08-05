@@ -13,4 +13,5 @@ This projec has a dependency on the Nordic Semiconductor [`Android-BLE-Library`]
 
 Reverse engineering the smartwatch [Blog](http://www.biego.tech/dt78)
 
-[Code repository](https://github.com/fbiego/dt78)
+[`Code repository`](https://github.com/fbiego/dt78)   [`Blog`](http://www.biego.tech/dt78)
+
