@@ -1,49 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="za.co.mitchwongho.example.esp32.alerts.MainActivity">
+    tools:context="com.fbiego.dt78.MainActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_watch" />
+
+            <TextView
+                android:id="@+id/watchName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Not connected"
+                android:textColor="#0A131C"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/connect"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:tint="#AAA"
+                android:src="@drawable/ic_bt" />
+
+            <TextView
+                android:id="@+id/battery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/layoutSteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@+id/cardInfo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp">
+
+                <com.hadiidbouk.charts.ChartProgressBar
+                    android:id="@+id/ChartProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    app:hdBarCanBeClick="false"
+                    app:hdBarHeight="100dp"
+                    app:hdBarWidth="7dp"
+                    app:hdBarRadius="2dp"
+                    app:hdMaxValue="4000"
+                    app:hdEmptyColor="@color/colorTransparent"
+                    app:hdProgressColor="@color/colorPrimaryDark"
+                    app:hdProgressClickColor="@color/colorAccent"
+                    app:hdPinBackgroundColor="@color/colorPrimaryDark"
+                    app:hdPinTextColor="@color/colorPrimaryDark"
+                    app:hdPinPaddingBottom="5dp"
+                    app:hdBarTitleColor="@color/colorPrimaryDark"
+                    app:hdBarTitleTxtSize="12sp"
+                    app:hdPinTxtSize="17sp"
+                    app:hdPinMarginTop="0dp"
+                    app:hdPinMarginBottom="0dp"
+                    app:hdPinMarginEnd="0dp"
+                    app:hdBarTitleMarginTop="9dp"
+                    app:hdPinDrawable="@drawable/ic_pin"
+                    app:hdProgressDisableColor="@color/colorWindowBackground"
+                    app:hdBarTitleSelectedColor="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/stepsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="-- steps"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/caloriesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="-- kcal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:weightSum="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintTop_toBottomOf="@+id/layoutSteps">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:id="@+id/hrmCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Click "
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:onClick="health">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_stat_espressif"
-            android:tint="@color/colorPrimary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Heart Rate"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/textHrm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0\nbpm"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/bpCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text=" to select which app notifications to relay."
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:onClick="health">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Blood Pressure"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/textBp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="00/00\nmmHg"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/sp02Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:onClick="health">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Blood Oxygen"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/textSp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0\n%"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
@@ -52,12 +247,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/ic_stat_espressif"
         android:theme="@style/MyFloatingButton"
         app:borderWidth="0dp"
         app:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:rippleColor="@color/colorPrimaryDark" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Find Watch"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:onClick="testNotify"
+        android:text="Test"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -11,9 +11,9 @@
         android:summary="@string/start_service_at_boot"
         android:defaultValue="false"/>
     <CheckBoxPreference
-        android:key="pref_flip_vertically"
-        android:title="@string/flip_vertically"
-        android:summary="@string/flip_vertically_summary"
+        android:key="pref_notify_disconnect"
+        android:title="@string/notify_disconnect"
+        android:summary="@string/not_disconnect"
         android:defaultValue="false"/>
     <EditTextPreference
         android:key="pref_remote_mac_address"

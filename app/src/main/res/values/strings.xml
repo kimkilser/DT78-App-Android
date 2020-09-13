@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DT78 Alerts</string>
+    <string name="app_name">DT78 App</string>
     <string name="service_name">DT78 Listener</string>
     <string name="choose_app">Choose App</string>
     <string name="preferences">Preferences</string>
@@ -14,6 +14,8 @@
     <string name="kill_service">Kill service</string>
     <string name="start_service">Start service</string>
     <string name="start_at_boot">Start at boot</string>
+    <string name="notify_disconnect">Notify on disconnect</string>
+    <string name="not_disconnect">Show notification when the device looses connection</string>
     <string name="start_service_at_boot">Enable to automatically start the service after the operating system boots up</string>
     <string name="channel_desc">Connection status notifications</string>
     <string name="flip_vertically">Flip display vertically</string>
