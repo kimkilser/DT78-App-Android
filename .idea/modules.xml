@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ESP-Alerts-for-Android.iml" filepath="$PROJECT_DIR$/.idea/ESP-Alerts-for-Android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Android-BLE-Library/ble/ble.iml" filepath="$PROJECT_DIR$/../Android-BLE-Library/ble/ble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DT78Alerts.iml" filepath="$PROJECT_DIR$/.idea/modules/DT78Alerts.iml" group="DT78Alerts" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="DT78Alerts/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1480385995/ble.iml" filepath="$PROJECT_DIR$/.idea/modules/1480385995/ble.iml" group="DT78Alerts/ble" />
     </modules>
   </component>
 </project>
