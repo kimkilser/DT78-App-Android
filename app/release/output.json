@@ -11,10 +11,10 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 1,
-      "versionName": "1",
+      "versionCode": 2,
+      "versionName": "2",
       "enabled": true,
-      "outputFile": "DT78-App-v1.0.apk"
+      "outputFile": "DT78-App-v1.1.apk"
     }
   ]
 }
