@@ -2,11 +2,16 @@
 
 Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongho/ESP-Alerts-for-Android)
 
-## Changes
+#### Notification test video
 
-Modified code to send notifications to the smartwatch. 
+[`Youtube`](https://youtu.be/2429i_2OC2A)
 
-Notification test video [`Youtube`](https://youtu.be/2429i_2OC2A)
+#### Implemented
+
+* Notifications upto 120 characters to the watch
+* Call & SMS listener (requires Contacts, Phone & SMS permission)
+* Watch battery percentage on the ongoing notification (priority PRIORITY_MIN, IMPORTANCE_MIN)
+* Find phone feature rings and locks phone then sends Phone battery percentage as notification to the watch (requires Device Admin permission)
 
 ## Dependencies
 
