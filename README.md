@@ -21,7 +21,7 @@ You have to manually setup the watch Mac Address from app settings.
 
 The app may stop working if permission is not granted.
 
-Android 9 and later prevents call and sms access so it may not work
+Android 9 and later prevents call and sms access so it may not work, see [`Documentation`](https://android-developers.googleblog.com/2018/10/providing-safe-and-secure-experience.html?m=1)
 
 ## Dependencies
 
