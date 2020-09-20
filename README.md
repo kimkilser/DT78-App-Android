@@ -15,11 +15,13 @@ Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongh
 
 #### Apk Installation
 
-[`DT78-App-v1.1.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.1.apk)
+[`DT78-App-v1.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.2.apk)
 
 You have to manually setup the watch Mac Address from app settings.
 
 The app may stop working if permission is not granted.
+
+Android 9 and later prevents call and sms access so it may not work
 
 ## Dependencies
 
