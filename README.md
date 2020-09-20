@@ -1,7 +1,5 @@
 # DT78-Alerts-Android
 
-Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongho/ESP-Alerts-for-Android)
-
 #### Notification test video
 
 [`Youtube`](https://youtu.be/2429i_2OC2A)
@@ -9,9 +7,9 @@ Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongh
 #### Implemented
 
 * Notifications upto 120 characters to the watch
-* Call & SMS listener (requires Contacts, Phone & SMS permission)
+* Call & SMS listener (requires Contacts, Phone & SMS permission) for Android 8 and below
 * Watch battery percentage on the ongoing notification
-* Find phone feature rings and locks phone then sends Phone battery percentage as notification to the watch (requires Device Admin permission)
+* Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
 
 #### Apk Installation
 
