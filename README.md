@@ -10,7 +10,7 @@ Forked from [`mitchwongho/ESP-Alerts-for-Android`](https://github.com/mitchwongh
 
 * Notifications upto 120 characters to the watch
 * Call & SMS listener (requires Contacts, Phone & SMS permission)
-* Watch battery percentage on the ongoing notification (priority PRIORITY_MIN, IMPORTANCE_MIN)
+* Watch battery percentage on the ongoing notification
 * Find phone feature rings and locks phone then sends Phone battery percentage as notification to the watch (requires Device Admin permission)
 
 #### Apk Installation
