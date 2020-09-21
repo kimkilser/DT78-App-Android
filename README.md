@@ -1,5 +1,9 @@
 # DT78-Alerts-Android
 
+#### Telegram Group
+
+Join the telegram group [`DT78 Smartwatch`](t.me/dt78app)
+
 #### Notification test video
 
 [`Youtube`](https://youtu.be/2429i_2OC2A)
@@ -13,7 +17,7 @@
 
 #### Apk Installation
 
-[`DT78-App-v1.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.2.apk)
+[`DT78-App-v1.3.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.3.apk)
 
 You have to manually setup the watch Mac Address from app settings.
 
