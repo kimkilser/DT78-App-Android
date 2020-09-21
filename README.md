@@ -1,6 +1,6 @@
 # DT78-Alerts-Android
 
-#### Telegram Group
+#### Telegram
 
 Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
