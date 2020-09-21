@@ -2,7 +2,7 @@
 
 #### Telegram Group
 
-Join the telegram group [`DT78 Smartwatch`](t.me/dt78app)
+Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 #### Notification test video
 
