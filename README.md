@@ -15,7 +15,7 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 * Watch battery percentage on the ongoing notification
 * Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
 
-#### Apk Installation
+### App Install
 
 [`DT78-App-v1.4.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4.apk)    [`DT78-App-v1.4-dt92.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4-dt92.apk)
 
