@@ -10,20 +10,19 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 #### Implemented
 
+* Almost all features
 * Notifications upto 120 characters to the watch
-* Call & SMS listener (requires Contacts, Phone & SMS permission) for Android 8 and below
 * Watch battery percentage on the ongoing notification
 * Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
 
 #### Apk Installation
 
-[`DT78-App-v1.3.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.3.apk)
+[`DT78-App-v1.4.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4.apk)    [`DT78-App-v1.4-dt92.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4-dt92.apk)
 
 You have to manually setup the watch Mac Address from app settings.
 
 The app may stop working if permission is not granted.
 
-Android 9 and later prevents call and sms access so it may not work, see [`Documentation`](https://android-developers.googleblog.com/2018/10/providing-safe-and-secure-experience.html?m=1)
 
 ## Dependencies
 
