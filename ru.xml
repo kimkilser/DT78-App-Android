@@ -74,7 +74,7 @@
         <item>однажды</item>
         <item>Каждый день</item>
         <item>Пн - пт</item>
-        <item>На заказ</item>
+        <item>обычай</item>
     </string-array>
     <string-array name="sedentaryInterval">
         <item>45 минут</item>
