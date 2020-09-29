@@ -1,4 +1,4 @@
-# DT78-Alerts-Android
+# DT78-App-Android
 
 #### Telegram
 
