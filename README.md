@@ -29,7 +29,11 @@ Request the app to be translated in your language
 
 Currently in [`en`](https://github.com/fbiego/DT78-App-Android/blob/master/en.xml), [`ru`](https://github.com/fbiego/DT78-App-Android/blob/master/ru.xml)
 
+### Screenshots
 
+![1](dt78_app1.jpg?raw=true "1")
+
+![2](dt78_app2.jpg?raw=true "2")
 
 ## Dependencies
 
