@@ -17,7 +17,7 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ### App Install
 
-[`DT78-App-v1.4.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4.apk)    [`DT78-App-v1.4-dt92.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.4-dt92.apk)
+[`DT78-App-v1.5.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.5.apk)    [`DT78-App-v1.5-dt92.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.5-dt92.apk)
 
 You have to manually setup the watch Mac Address from app settings.
 
