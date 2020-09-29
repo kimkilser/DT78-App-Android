@@ -23,6 +23,13 @@ You have to manually setup the watch Mac Address from app settings.
 
 The app may stop working if permission is not granted.
 
+### Translation
+
+Request the app to be translated in your language
+
+Currently in [`en`](https://github.com/fbiego/DT78-App-Android/blob/master/en.xml), [`ru`](https://github.com/fbiego/DT78-App-Android/blob/master/ru.xml)
+
+
 
 ## Dependencies
 
