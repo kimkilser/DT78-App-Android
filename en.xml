@@ -64,25 +64,48 @@
     <string name="connect_set">Connect watch to set a one time alarm</string>
     <string name="years">years</string>
     <string name="kcal">kcal</string>
+    <string name="distance">distance</string>
     <string name="cm">cm</string>
     <string name="kg">kg</string>
+    <string name="km">km</string>
+    <string name="miles">miles</string>
+    <string name="loading">Loading...</string>
     <string name="steps">steps</string>
     <string name="mmHg">mmHg</string>
     <string name="bpm">bpm</string>
     <string name="start_measure">Tap to start measurement</string>
     <string name="stop_measure">Tap to stop measurement</string>
 
+    <string name="scan">Scanning...</string>
+    <string name="connecting">Connecting to</string>
+    <string name="connected">Connected</string>
+    <string name="loss_link">Lost link to</string>
+    <string name="disconnecting">Disconnecting from</string>
+    <string name="disconnected">Disconnected from</string>
+    <string name="battery">Battery</string>
+    <string name="choose_apps">Tap to select apps</string>
+
     <string name="once">Once</string>
     <string name="everyday">Everyday</string>
     <string name="mon_fri">Mon - Fri</string>
 
-    <string name="sun" translatable="false">Sun</string>
-    <string name="mon" translatable="false">Mon</string>
-    <string name="tue" translatable="false">Tue</string>
-    <string name="wed" translatable="false">Wed</string>
-    <string name="thur" translatable="false">Thur</string>
-    <string name="fri" translatable="false">Fri</string>
-    <string name="sat" translatable="false">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thur">Thur</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+
+    <string name="su">S</string>
+    <string name="mo">M</string>
+    <string name="tu">T</string>
+    <string name="we">W</string>
+    <string name="th">T</string>
+    <string name="fr">F</string>
+    <string name="sa">S</string>
+
+
 
     <string-array name="alarm_options">
         <item>Once</item>
