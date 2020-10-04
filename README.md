@@ -36,7 +36,7 @@ Currently in [`en`](https://github.com/fbiego/DT78-App-Android/blob/master/en.xm
 
 ### Screenshots
 
-![1](dt78_app1.jpg?raw=true "1")
+![1](dt78_app3.jpg?raw=true "3")
 
 ![2](dt78_app2.jpg?raw=true "2")
 
