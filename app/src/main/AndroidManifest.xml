@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.fbiego.dt78">
+    package="com.fbiego.dt78" >
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
         android:name=".app.MainApplication"
@@ -21,12 +22,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="false"
-        android:theme="@style/AppTheme">
-        <activity android:name=".HealthActivity" />
+        android:theme="@style/AppTheme" >
+        <activity android:name=".app.ErrorLogActivity"
+            android:label="@string/error_log"/>
+        <activity android:name=".ContactsActivity"
+            android:label="@string/contacts"/>
+        <activity
+            android:name=".AppsActivity"
+            android:label="@string/choose_app" />
+        <activity
+            android:name=".SettingsWatchActivity"
+            android:label="@string/watch_settings" />
+        <activity
+            android:name=".UserActivity"
+            android:label="@string/user" />
+        <activity
+            android:name=".ReminderActivity"
+            android:label="@string/reminder" />
+        <activity
+            android:name=".HealthActivity"
+            android:label="@string/health" />
         <activity android:name=".StepsActivity" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +61,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
-            android:roundIcon="@mipmap/ic_launcher_round">
+            android:roundIcon="@mipmap/ic_launcher_round" >
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
@@ -55,14 +74,14 @@
             android:name=".app.OnBootReceiver"
             android:enabled="true"
             android:exported="false"
-            android:label="OnBootReceiver">
+            android:label="OnBootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".app.DeviceAdmin"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/policies" />
@@ -73,16 +92,26 @@
         </receiver>
         <receiver
             android:name=".app.SMSReceiver"
-            android:permission="android.permission.BROADCAST_SMS">
+            android:permission="android.permission.BROADCAST_SMS" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".app.PhonecallReceiver">
+        <receiver android:name=".app.PhonecallReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.fbiego.dt78.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files" />
+        </provider>
+
     </application>
 
 </manifest>
