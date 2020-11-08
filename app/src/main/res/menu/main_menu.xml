@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/menu_item_kill"
-        android:title="@string/kill_service"
-        android:contentDescription="@string/kill_service"
+        android:title="@string/stop_service"
+        android:contentDescription="@string/stop_service"
         android:icon="@drawable/ic_off"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"

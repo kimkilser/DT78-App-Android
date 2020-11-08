@@ -15,6 +15,7 @@
         android:title="@string/notify_disconnect"
         android:summary="@string/not_disconnect"
         android:defaultValue="false"/>
+
     <EditTextPreference
         android:key="pref_remote_mac_address"
         android:title="@string/remote_mac_address"
