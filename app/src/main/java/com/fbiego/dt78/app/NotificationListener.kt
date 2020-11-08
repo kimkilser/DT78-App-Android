@@ -7,6 +7,9 @@ import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.support.v4.content.LocalBroadcastManager
 import android.text.SpannableString
+import com.fbiego.dt78.app.ForegroundService.Companion.dt78
+import com.fbiego.dt78.data.Channel
+import com.fbiego.dt78.data.parseApps
 import timber.log.Timber
 
 /**
@@ -15,14 +18,15 @@ import timber.log.Timber
 class NotificationListener : NotificationListenerService() {
 
     companion object {
-        val EXTRA_ACTION = "ESP"
-        val EXTRA_PACKAGE = "EXTRA_PACKAGE"
-        val EXTRA_NOTIFICATION_DISMISSED = "EXTRA_NOTIFICATION_DISMISSED"
-        val EXTRA_APP_NAME = "EXTRA_APP_NAME"
-        val EXTRA_NOTIFICATION_ID_INT = "EXTRA_NOTIFICATION_ID_INT"
-        val EXTRA_TITLE = "EXTRA_TITLE"
-        val EXTRA_BODY = "EXTRA_BODY"
-        val EXTRA_TIMESTAMP_LONG = "EXTRA_TIMESTAMP_LONG"
+        const val EXTRA_ACTION = "ESP"
+        const val EXTRA_PACKAGE = "EXTRA_PACKAGE"
+        const val EXTRA_NOTIFICATION_DISMISSED = "EXTRA_NOTIFICATION_DISMISSED"
+        const val EXTRA_APP_NAME = "EXTRA_APP_NAME"
+        const val EXTRA_NOTIFICATION_ID_INT = "EXTRA_NOTIFICATION_ID_INT"
+        const val EXTRA_TITLE = "EXTRA_TITLE"
+        const val EXTRA_BODY = "EXTRA_BODY"
+        const val EXTRA_TIMESTAMP_LONG = "EXTRA_TIMESTAMP_LONG"
+        const val EXTRA_ICON = "EXTRA_ICON"
     }
 
     /**
@@ -51,15 +55,25 @@ class NotificationListener : NotificationListenerService() {
 
         val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())
 
+        val appsChannels = parseApps(allowedPackages)
+        val me: Channel? = appsChannels.singleOrNull {
+            it.app == sbn.packageName
+        }
+
         // broadcast StatusBarNotication (exclude own notifications)
-        if (sbn.id != ForegroundService.SERVICE_ID
-                && allowedPackages.contains(sbn.packageName)) {
+        if (sbn.id != ForegroundService.SERVICE_ID && me != null) {
+            if (me.icon == 13 || me.icon == 14){
+                if (dt78){
+                    me.icon = 0
+                }
+            }
             val intent = Intent(EXTRA_ACTION)
             intent.putExtra(EXTRA_NOTIFICATION_ID_INT, sbn.id)
             intent.putExtra(EXTRA_PACKAGE, sbn.packageName)
             intent.putExtra(EXTRA_APP_NAME, appName)
             intent.putExtra(EXTRA_TITLE, title)
             intent.putExtra(EXTRA_BODY, body)
+            intent.putExtra(EXTRA_ICON, me.icon)
             intent.putExtra(EXTRA_NOTIFICATION_DISMISSED, false)
             intent.putExtra(EXTRA_TIMESTAMP_LONG, sbn.postTime)
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
@@ -86,16 +100,26 @@ class NotificationListener : NotificationListenerService() {
 
         val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())
 
+        val appsChannels = parseApps(allowedPackages)
+        val me: Channel? = appsChannels.singleOrNull {
+            it.app == sbn.packageName
+        }
+
         Timber.d("onNotificationRemoved {app=${applicationContext.packageManager.getApplicationLabel(appInfo)},id=${sbn.id},ticker=$ticker,title=$title,body=$body,posted=${sbn.postTime},package=${sbn.packageName}}")
 
         // broadcast StatusBarNotication (exclude own notifications)
-        if (sbn.id != ForegroundService.SERVICE_ID
-                && allowedPackages.contains(sbn.packageName)) {
+        if (sbn.id != ForegroundService.SERVICE_ID && me != null) {
+            if (me.icon == 13 || me.icon == 14){
+                if (dt78){
+                    me.icon = 0
+                }
+            }
             val intent = Intent(EXTRA_ACTION)
             intent.putExtra(EXTRA_NOTIFICATION_ID_INT, sbn.id)
             intent.putExtra(EXTRA_APP_NAME, appName)
             intent.putExtra(EXTRA_TITLE, title)
             intent.putExtra(EXTRA_BODY, body)
+            intent.putExtra(EXTRA_ICON, me.icon)
             intent.putExtra(EXTRA_NOTIFICATION_DISMISSED, true)
             intent.putExtra(EXTRA_TIMESTAMP_LONG, sbn.postTime)
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)

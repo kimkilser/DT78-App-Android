@@ -16,8 +16,10 @@ import com.fbiego.dt78.app.SettingsActivity
 import com.fbiego.dt78.data.MyDBHandler
 import com.fbiego.dt78.data.StepsAdapter
 import com.fbiego.dt78.data.StepsData
+import com.fbiego.dt78.data.distance
 import com.hadiidbouk.charts.BarData
 import com.hadiidbouk.charts.ChartProgressBar
+import com.fbiego.dt78.app.ForegroundService as FG
 
 class StepsActivity : AppCompatActivity() {
 
@@ -26,6 +28,7 @@ class StepsActivity : AppCompatActivity() {
     var day = 0
     var current = 0
     var maxDay = 0
+    var stepSize = 70
 
 
     companion object {
@@ -85,14 +88,14 @@ class StepsActivity : AppCompatActivity() {
         ForegroundService.lst_sync = pref.getLong(SettingsActivity.PREF_SYNC,System.currentTimeMillis() - 604800000)
         if (System.currentTimeMillis() > ForegroundService.lst_sync + (3600000 * 1)){
             if (ForegroundService().syncData()){
-                Toast.makeText(this, "Syncing watch data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.sync_watch, Toast.LENGTH_SHORT).show()
                 val editor: SharedPreferences.Editor = pref.edit()
                 val time = System.currentTimeMillis()
                 editor.putLong(SettingsActivity.PREF_SYNC, time)
                 editor.apply()
                 editor.commit()
             } else  {
-                Toast.makeText(this, "Unable to sync data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.unable_sync, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -100,6 +103,7 @@ class StepsActivity : AppCompatActivity() {
         dayList.clear()
         val dbHandler = MyDBHandler(this, null, null, 1)
         dayList = dbHandler.getDaysWithSteps()
+        stepSize = dbHandler.getUser().step
         maxDay = dayList.size
         next.isEnabled = false
         prev.isEnabled = maxDay > 0
@@ -126,13 +130,15 @@ class StepsActivity : AppCompatActivity() {
             }
             val stepText = findViewById<TextView>(R.id.stepsTextA)
             val calText = findViewById<TextView>(R.id.caloriesTextA)
+            val disText = findViewById<TextView>(R.id.distanceTextA)
             val dayText = findViewById<TextView>(R.id.textDate)
-            stepText.text = "$steps steps"
-            calText.text = "$cal kcal"
+            stepText.text = "$steps "+getString(R.string.steps)
+            calText.text = "$cal "+getString(R.string.kcal)
+            disText.text = distance(steps*stepSize, FG.unit!=0, this)
             val date = java.lang.String.format("%02d-%02d-20%02d", stepList[0].day, stepList[0].month,stepList[0].year)
             dayText.text = date
 
-            val stepAdapter = StepsAdapter(stepList)
+            val stepAdapter = StepsAdapter(stepList, stepSize)
 
             stepRecycler.apply {
                 layoutManager = LinearLayoutManager(this@StepsActivity)

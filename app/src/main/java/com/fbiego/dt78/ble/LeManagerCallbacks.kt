@@ -143,7 +143,7 @@ open class LeManagerCallbacks : BleManagerCallbacks {
      * @param device the device that caused an error
      */
     override fun onError(device: BluetoothDevice, message: String, errorCode: Int) {
-        Timber.e("onError {address=${device.address},name=${device.name},msg=${message},err=$errorCode}")
+        Timber.d("onError {address=${device.address},name=${device.name},msg=${message},err=$errorCode}")
     }
 
     /**

@@ -29,7 +29,11 @@ class HealthAdapter(healthData: ArrayList<HealthData>): RecyclerView.Adapter<Hea
         p0.bind(data[p1])
     }
 
-
+    fun update(healthData: ArrayList<HealthData>){
+        this.data.clear()
+        this.data.addAll(healthData)
+        this.notifyDataSetChanged()
+    }
 
     class DataHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val mDate: TextView = itemView.findViewById(R.id.date)

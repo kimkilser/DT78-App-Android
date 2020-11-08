@@ -5,11 +5,17 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.provider.ContactsContract
 import android.telephony.TelephonyManager
+import android.util.Log
+import com.fbiego.dt78.MainActivity
+import timber.log.Timber
+
 class PhonecallReceiver: BroadcastReceiver() {
 
     override fun onReceive(context:Context, intent:Intent) {
+
         val stateStr = intent.extras?.getString(TelephonyManager.EXTRA_STATE)
         val number = intent.extras?.getString(TelephonyManager.EXTRA_INCOMING_NUMBER)
         var state = 0
@@ -25,27 +31,36 @@ class PhonecallReceiver: BroadcastReceiver() {
                 state = TelephonyManager.CALL_STATE_RINGING
             }
         }
-        val lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number))
-        val c = context.contentResolver.query(lookupUri, arrayOf(ContactsContract.Data.DISPLAY_NAME), null, null, null)
-        try {
-            c?.moveToFirst()
-            val displayName = c?.getString(0)
-            name = displayName
-        } catch (e:Exception) {
+        if (number != null){
+            val lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number))
+            val c = context.contentResolver.query(lookupUri, arrayOf(ContactsContract.Data.DISPLAY_NAME), null, null, null)
+            try {
+                if (c?.moveToFirst()!!){
+                    val displayName = c.getString(0)
+                    name = displayName
+                }
+            } catch (e:Exception) {
+                Timber.e("Caller Error: $e")
+            } finally {
+                c?.close()
+            }
+        }
 
+        Timber.d( "name is $name")
+        if (name != null){
+            onCallStateChanged(state, name)
         }
-        finally
-        {
-            c?.close()
-        }
-        onCallStateChanged(context, state, name!!)
+
+
+
+
     }
     //Derived classes should override these to respond to specific events of interest
 
     //Deals with actual events
     //Incoming call- goes from IDLE to RINGING when it rings, to OFFHOOK when it's answered, to IDLE when its hung up
     //Outgoing call- goes from IDLE to OFFHOOK when it dials out, to IDLE when hung up
-    private fun onCallStateChanged(context:Context, state:Int, number:String) {
+    private fun onCallStateChanged(state:Int, number:String) {
         if (lastState == state) {
             //No change, debounce extras
             return
@@ -59,14 +74,11 @@ class PhonecallReceiver: BroadcastReceiver() {
             }
             TelephonyManager.CALL_STATE_OFFHOOK ->
                 //Transition of ringing->offhook are pickups of incoming calls. Nothing done on them
-                if (lastState != TelephonyManager.CALL_STATE_RINGING)
-                {
+                if (lastState != TelephonyManager.CALL_STATE_RINGING) {
                     isIncoming = false
                     callStartTime = Date()
                     mListener.callEnded()
-                }
-                else
-                {
+                } else {
                     isIncoming = true
                     callStartTime = Date()
                     mListener.callEnded()
@@ -79,7 +91,7 @@ class PhonecallReceiver: BroadcastReceiver() {
                         mListener.callEnded()
                     }
                     isIncoming -> {
-                        mListener.callReceived(savedNumber)
+                        mListener.callEnded()
                     }
                     else -> {
                         mListener.callEnded()
