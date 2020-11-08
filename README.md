@@ -1,9 +1,5 @@
 # DT78-App-Android
 
-#### Telegram
-
-Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
-
 #### Notification test video
 
 [`Youtube`](https://youtu.be/2429i_2OC2A)
@@ -17,16 +13,18 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ### App Install
 
-[`DT78-App-v1.9.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v1.9.apk)
+[`DT78-App-v2.0.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.0.apk)
 
-Released on `Sunday, 11 October 2020 10:10 Greenwich Mean Time (GMT)`
+Released on `Sunday, 8 November 2020 06:00 Greenwich Mean Time (GMT)`
 
-You have to manually setup the watch Mac Address from app settings.
 
 The watch should have been paired/bonded with the phone in the Bluetooth settings
 
 The app may stop working if permission is not granted.
 
+#### Telegram
+
+Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ### Translation
 
