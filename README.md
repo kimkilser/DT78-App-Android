@@ -10,6 +10,7 @@
 * Notifications upto 120 characters to the watch
 * Watch battery percentage on the ongoing notification
 * Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
+* Tested on DT78 & DT92
 
 ### App Install
 
@@ -17,10 +18,14 @@
 
 Released on `Sunday, 8 November 2020 06:00 Greenwich Mean Time (GMT)`
 
-
-The watch should have been paired/bonded with the phone in the Bluetooth settings
-
-The app may stop working if permission is not granted.
+Changelog:
+>+ Removed manual entry of mac address, watch address will be selected from the list of paired devices
+>+ Removed *Run as service* option in preferences, the app will run as service by default, can still be stopped and started from the main screen
+>+ Increased visibility of the text icon for watch percentage
+>+ Auto detect watch type between DT78 & DT92 and firmware version
+>+ Added frequent contacts for DT92
+>+ *Smart notification* on DT78 only, title and message will be in separate lines if notification is short
+>+ Fixed bug causing `CursorIndexOutOfBoudsException` error
 
 #### Telegram
 
