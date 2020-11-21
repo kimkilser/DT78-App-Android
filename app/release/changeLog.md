@@ -11,3 +11,9 @@
 >+ Fixed bug causing `CursorIndexOutOfBoudsException` error
 
 ## 2.1
+>+ Fixed static year bug, v2.0 and below will not set the correct time after year 2020
+>+ Fixed dependency of permissions, app should not crash if permission is not granted
+>+ Call and SMS notification can be turned on or off
+>+ Added raise to wake setting for DT92
+>+ *Smart notification v2* on DT78 only, space at the start of each line will be removed
+>+ Added large number font on Google weather and phone battery notifications
