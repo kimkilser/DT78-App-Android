@@ -18,7 +18,7 @@
 
 Released on `Saturday, 21 November 2020 19:00 Greenwich Mean Time (GMT)`
 
-[Changelog](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/changeLog.md):
+[Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
 >+ Fixed static year bug, v2.0 and below will not set the correct time after year 2020
 >+ Fixed dependency of permissions, app should not crash if permission is not granted
 >+ Call and SMS notification can be turned on or off
