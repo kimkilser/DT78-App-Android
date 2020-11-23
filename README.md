@@ -1,8 +1,9 @@
 # DT78-App-Android
 
-#### Notification test video
+#### Videos
 
-[`Youtube`](https://youtu.be/2429i_2OC2A)
++ [`How to connect`](https://youtu.be/4o1O2qxbPlw)
++ [`Notification test`](https://youtu.be/2429i_2OC2A)
 
 #### Implemented
 
