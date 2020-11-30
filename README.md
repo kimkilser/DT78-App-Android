@@ -15,17 +15,17 @@
 
 ### App Install
 
-[`DT78-App-v2.1.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.1.apk)
+[`DT78-App-v2.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.2.apk)
 
-Released on `Saturday, 21 November 2020 19:00 Greenwich Mean Time (GMT)`
+Released on `Monday, 30 November 2020 09:35 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Fixed static year bug, v2.0 and below will not set the correct time after year 2020
->+ Fixed dependency of permissions, app should not crash if permission is not granted
->+ Call and SMS notification can be turned on or off
->+ Added raise to wake setting for DT92
->+ *Smart notification v2* on DT78 only, space at the start of each line will be removed
->+ Added large number font on Google weather and phone battery notifications
+>+ Added Notification filter for individual apps
+>+ Added Indonesian language
+>+ Added Reset watch feature
+>+ Phone battery notification when plugged, unplugged & find phone
+>+ Self Test Notification to verify if Notification listener is working
+>+ Camera feature will start Camera app (root only)
 
 #### Telegram
 
