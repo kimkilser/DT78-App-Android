@@ -27,6 +27,10 @@ Released on `Monday, 30 November 2020 09:35 Greenwich Mean Time (GMT)`
 >+ Self Test Notification to verify if Notification listener is working
 >+ Camera feature will start Camera app (root only)
 
+#### Translate
+
+[`DT78 app translations`](https://docs.google.com/spreadsheets/d/1crHcLgeA30y7-kiXHY95TBrc7-_znlTKFR2QMc66zT4/edit?usp=sharing) on Google Sheets
+
 #### Telegram
 
 Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
