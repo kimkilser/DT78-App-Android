@@ -15,7 +15,7 @@
 
 ### App Install
 
-[`DT78-App-v2.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.2.apk)
+[`DT78-App-v2.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.2(1).apk)
 
 Released on `Monday, 30 November 2020 09:35 Greenwich Mean Time (GMT)`
 
