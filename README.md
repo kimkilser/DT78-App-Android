@@ -15,9 +15,9 @@
 
 ### App Install
 
-[`DT78-App-v2.2.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.2(1).apk)
+[`DT78-App-v2.3.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.3.apk)
 
-Released on `Monday, 30 November 2020 09:35 Greenwich Mean Time (GMT)`
+Released on `Sunday, 6 December 2020 10:25 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
 >+ Added Notification filter for individual apps
