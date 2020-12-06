@@ -25,3 +25,9 @@
 + Phone battery notification when plugged, unplugged & find phone
 + Self Test Notification to verify if Notification listener is working
 + Camera feature will start Camera app (root only)
+
+## 2.3
++ Added Vietnamese language
++ Fixed hourly measurement data not being saved
++ Quiet hours feature will not send notifications during quiet hours
++ Service will not start automatically unless Bluetooth is on and the address has been set
