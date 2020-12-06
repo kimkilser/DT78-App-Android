@@ -20,12 +20,10 @@
 Released on `Sunday, 6 December 2020 10:25 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Added Notification filter for individual apps
->+ Added Indonesian language
->+ Added Reset watch feature
->+ Phone battery notification when plugged, unplugged & find phone
->+ Self Test Notification to verify if Notification listener is working
->+ Camera feature will start Camera app (root only)
+>+ Added Vietnamese language
+>+ Fixed hourly measurement data not being saved
+>+ Quiet hours feature will not send notifications during quiet hours
+>+ Service will not start automatically unless Bluetooth is on and the address has been set
 
 #### Translate
 
