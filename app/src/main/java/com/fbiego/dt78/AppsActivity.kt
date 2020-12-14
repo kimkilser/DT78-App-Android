@@ -81,7 +81,12 @@ class AppsActivity : AppCompatActivity() {
             channels.clear()
             names.forEach {
                 val index = names.indexOf(it)
-                appsList.add(AppsData(it, installedApps[index].packageName, chan[index], checkedItems[index], true))
+                //-------------------------------------------------------------------------
+                // {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
+                //-------------------------------------------------------------------------
+                val icon = installedApps[index].loadIcon(packageManager)
+
+                appsList.add(AppsData(icon, it, installedApps[index].packageName, chan[index], checkedItems[index], true))
                 if (checkedItems[index]){
                     appsPref.add(installedApps[index].packageName)
                     channels.add(chan[index])

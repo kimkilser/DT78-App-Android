@@ -1,7 +1,6 @@
 package com.fbiego.dt78.data
 
 import android.content.Context
-import android.preference.PreferenceManager
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.fbiego.dt78.R
-import com.fbiego.dt78.app.ForegroundService
 import com.fbiego.dt78.app.ForegroundService.Companion.dt78
-import com.fbiego.dt78.app.SettingsActivity as ST
 
 class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData, Int, Int, Boolean) -> Unit, private val context: Context): RecyclerView.Adapter<AppsAdapter.DataHolder>() {
 
@@ -58,7 +55,7 @@ class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData
     class DataHolder(itemView: View, private val notifyAdapter: NotifyAdapter) : RecyclerView.ViewHolder(itemView){
         private val mName: TextView = itemView.findViewById(R.id.appName)
         val mCheckBox: CheckBox = itemView.findViewById(R.id.appChecked)
-        //private val mIcon: ImageView = itemView.findViewById(R.id.appIcon)
+        private val mIcon: ImageView = itemView.findViewById(R.id.appIcon)
         val mSpinner: Spinner = itemView.findViewById(R.id.appSpinner)
 
         fun bind (apps: AppsData, listener: (AppsData, Int, Int, Boolean) -> Unit, pos: Int){
@@ -70,7 +67,9 @@ class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData
             if (apps.channel == 0){
                 apps.channel = checkPackage(apps.packageName, dt78)
             }
+
             //mIcon.setImageResource(icons(apps.channel))
+            mIcon.setImageDrawable(apps.icon)
 
             mSpinner.adapter = notifyAdapter
 
