@@ -204,8 +204,15 @@ class AppsActivity : AppCompatActivity() {
             names.forEach {
                 val index = names.indexOf(it)
                 if (installedApps[index].packageName != smsPackage || installedApps[index].packageName != application.packageName) {
+
+                  	//-------------------------------------------------------------------------
+	               	// {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
+	               	//-------------------------------------------------------------------------
+	               	val icon = installedApps[index].loadIcon(packageManager)
+                
                     appsList.add(
                         AppsData(
+                        	icon,
                             it,
                             installedApps[index].packageName,
                             filter[index].icon,

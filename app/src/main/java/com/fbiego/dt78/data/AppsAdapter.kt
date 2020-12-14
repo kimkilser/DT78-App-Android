@@ -72,6 +72,7 @@ class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData
                 apps.channel = checkPackage(apps.packageName, Watch(id).iconSet)
             }
             //mIcon.setImageResource(icons(apps.channel))
+            mIcon.setImageDrawable(apps.icon)
 
             mSpinner.adapter = notifyAdapter
 
