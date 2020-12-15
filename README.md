@@ -4,6 +4,7 @@
 
 + [`How to connect`](https://youtu.be/4o1O2qxbPlw)
 + [`Notification test`](https://youtu.be/2429i_2OC2A)
++ [`DT66 Customized watchface`](https://youtu.be/CJ8nM-tDxSM)
 
 #### Implemented
 
