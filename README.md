@@ -11,7 +11,6 @@
 * Almost all features
 * Notifications upto 125 characters to the watch
 * Watch battery percentage on the ongoing notification
-* Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
 * Tested on DT78, DT92 & DT66
 
 ### App Install
