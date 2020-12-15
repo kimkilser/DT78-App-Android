@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 2.4
++ Added Portuguese language
++ Added watch language settings
++ Added Notify on disconnect ring option (open app or stop service to stop ringer)
++ Added Customized watchface upload for DT66 smartwatch
+
 ## 2.3
 + Added Vietnamese language
 + Fixed hourly measurement data not being saved
