@@ -11,19 +11,20 @@
 * Notifications upto 125 characters to the watch
 * Watch battery percentage on the ongoing notification
 * Find phone feature rings and locks phone(requires Device Admin permission) then sends Phone battery percentage as notification to the watch 
-* Tested on DT78 & DT92
+* Tested on DT78, DT92 & DT66
 
 ### App Install
 
-[`DT78-App-v2.3.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.3.apk)
+[`DT78-App-v2.4.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.4.apk)
 
-Released on `Sunday, 6 December 2020 10:25 Greenwich Mean Time (GMT)`
+Released on `Tuesday, 15 December 2020 15:25 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Added Vietnamese language
->+ Fixed hourly measurement data not being saved
->+ Quiet hours feature will not send notifications during quiet hours
->+ Service will not start automatically unless Bluetooth is on and the address has been set
+>+ Added Portuguese language
+>+ Added watch language settings
+>+ Added Notify on disconnect ring option (open app or stop service to stop ringer)
+>+ Added Customized watchface upload for DT66 smartwatch
+
 
 #### Translate
 
