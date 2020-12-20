@@ -44,8 +44,3 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 This project has a dependency on the Nordic Semiconductor [`Android-BLE-Library`](https://github.com/NordicSemiconductor/Android-BLE-Library/tree/6011e63816b792505b68d78b1c32b572a8f056e3) that should be cloned along side this project's folder.
 
-
-Reverse engineering the smartwatch
-
-[`Code repository`](https://github.com/fbiego/dt78)   [`Blog`](http://www.biego.tech/dt78)
-
