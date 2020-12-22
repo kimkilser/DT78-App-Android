@@ -15,15 +15,15 @@
 
 ### App Install
 
-[`DT78-App-v2.4.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.4.apk)
+[`DT78-App-v2.5.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.5.apk)
 
-Released on `Tuesday, 15 December 2020 15:25 Greenwich Mean Time (GMT)`
+Released on `Tuesday, 22 December 2020 18:30 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Added Portuguese language
->+ Added watch language settings
->+ Added Notify on disconnect ring option (open app or stop service to stop ringer)
->+ Added Customized watchface upload for DT66 smartwatch
+>+ Added German language
+>+ Added Greek language
+>+ Added Greek to English font converter
+>+ Added weekly & monthly view of steps data
 
 
 #### Translate
