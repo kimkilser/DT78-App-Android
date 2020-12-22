@@ -29,6 +29,13 @@ Released on `Tuesday, 15 December 2020 15:25 Greenwich Mean Time (GMT)`
 #### Translate
 
 [`DT78 app translations`](https://docs.google.com/spreadsheets/d/1crHcLgeA30y7-kiXHY95TBrc7-_znlTKFR2QMc66zT4/edit?usp=sharing) on Google Sheets
++ English
++ German
++ Greek
++ Indonesian
++ Portuguese
++ Russian
++ Vietnamese
 
 #### Telegram
 
