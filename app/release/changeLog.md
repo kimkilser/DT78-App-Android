@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 2.5
++ Added German language
++ Added Greek language
++ Added Greek to English font converter
++ Added weekly & monthly view of steps data
+
 ## 2.4
 + Added Portuguese language
 + Added watch language settings
