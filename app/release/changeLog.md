@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 2.6
++ Bug fixes
+
 ## 2.5
 + Added German language
 + Added Greek language
