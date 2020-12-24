@@ -15,9 +15,9 @@
 
 ### App Install
 
-[`DT78-App-v2.5.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.5.apk)
+[`DT78-App-v2.6.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.6.apk)
 
-Released on `Tuesday, 22 December 2020 18:30 Greenwich Mean Time (GMT)`
+Released on `Thursday, 24 December 2020 20:10 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
 >+ Added German language
