@@ -15,15 +15,13 @@
 
 ### App Install
 
-[`DT78-App-v2.6.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.6.apk)
+[`DT78-App-v2.7.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.7.apk)
 
-Released on `Thursday, 24 December 2020 20:10 Greenwich Mean Time (GMT)`
+Released on `Thursday, 7 January 2021 14:05 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Added German language
->+ Added Greek language
->+ Added Greek to English font converter
->+ Added weekly & monthly view of steps data
+>+ Implemented sleep data (experimental)
+>+ Minor improvements
 
 
 #### Translate
