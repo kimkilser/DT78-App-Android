@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 2.7
++ Implemented sleep data (experimental)
++ Minor improvements
+
 ## 2.6
 + Bug fixes
 
