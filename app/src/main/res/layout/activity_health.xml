@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/hrmCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,10 +39,10 @@
                 android:text="@string/hrm"
                 android:textSize="18sp" />
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/bpCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,9 +63,9 @@
                 android:text="@string/bph"
                 android:textSize="18sp" />
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/sp02Card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,12 +87,12 @@
                 android:textSize="18sp" />
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/healthCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -148,9 +148,9 @@
 
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHealthList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
