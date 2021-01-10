@@ -3,17 +3,14 @@ package com.fbiego.dt78.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.preference.PreferenceManager
-import android.provider.Settings.Global.getString
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.fbiego.dt78.R
 import com.fbiego.dt78.app.ForegroundService as FG
-import com.fbiego.dt78.app.SettingsActivity
 
 class StepsAdapter(stepsData: ArrayList<StepsData>, steps: Int): RecyclerView.Adapter<StepsAdapter.DataHolder>() {
 

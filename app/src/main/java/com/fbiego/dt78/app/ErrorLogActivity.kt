@@ -2,12 +2,11 @@ package com.fbiego.dt78.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity
-import android.text.method.ScrollingMovementMethod
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.fbiego.dt78.R
 import kotlinx.android.synthetic.main.activity_error_log.*
 import java.io.File
@@ -33,7 +32,7 @@ class ErrorLogActivity : AppCompatActivity() {
 
         val file = File(directory, "error.txt")
 
-        var error = ""
+        val error: String
 
         error = if (!file.exists()){
             getString(R.string.no_errors)

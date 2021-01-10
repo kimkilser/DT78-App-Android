@@ -1,14 +1,11 @@
 package com.fbiego.dt78.data
 
-import android.content.ContentResolver
-import android.content.Context
 import android.content.pm.PackageManager
 import com.fbiego.dt78.AppsActivity
-import com.fbiego.dt78.MainActivity
 import com.fbiego.dt78.app.ForegroundService.Companion.dt78
 import com.fbiego.dt78.app.MainApplication
 import timber.log.Timber
-import java.util.ArrayList
+import java.util.*
 
 class AppsLoader internal constructor (activity: AppsActivity): Runnable {
 
@@ -25,7 +22,7 @@ class AppsLoader internal constructor (activity: AppsActivity): Runnable {
         val names: Array<String> = installedApps.map { applicationInfo -> mActivity.packageManager.getApplicationLabel(applicationInfo).toString() }.toTypedArray()
 
         val prefsPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(
-            MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())
+            MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())!!
 
         val appChannels = parseApps(prefsPackages)
         val prefsAllowedPackages = ArrayList<String>()

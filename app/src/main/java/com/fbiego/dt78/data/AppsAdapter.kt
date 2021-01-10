@@ -6,7 +6,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.CheckBox
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.fbiego.dt78.R
 import com.fbiego.dt78.app.ForegroundService.Companion.dt78
 

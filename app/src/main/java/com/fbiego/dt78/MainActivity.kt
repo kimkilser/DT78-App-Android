@@ -1,7 +1,5 @@
 package com.fbiego.dt78
 
-//import androidx.appcompat.app.AppCompatActivity
-//import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
@@ -11,21 +9,18 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.provider.Settings
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.preference.PreferenceManager
 import com.fbiego.dt78.app.*
 import com.fbiego.dt78.ble.LEManager
 import com.fbiego.dt78.data.*
@@ -280,7 +275,7 @@ class MainActivity : AppCompatActivity(), ConnectionListener {
             cam?.visibility = View.INVISIBLE
         }
 
-        appsNo.text = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf()).size.toString()
+        appsNo.text = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())!!.size.toString()
 
 
         val dbHandler = MyDBHandler(this, null, null, 1)

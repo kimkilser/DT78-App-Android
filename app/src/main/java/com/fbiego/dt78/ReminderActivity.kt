@@ -3,12 +3,12 @@ package com.fbiego.dt78
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.preference.PreferenceManager
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.*
 import com.fbiego.dt78.app.SettingsActivity
@@ -38,8 +38,12 @@ class ReminderActivity : AppCompatActivity() {
         actionbar!!.setDisplayHomeAsUpEnabled(true)
 
         alarmRecycler = findViewById<View>(R.id.recyclerAlarmList) as RecyclerView
-        alarmRecycler.layoutManager = LinearLayoutManager(this)
-        val div = DividerItemDecoration(alarmRecycler.context,LinearLayoutManager.VERTICAL )
+        alarmRecycler.layoutManager =
+            LinearLayoutManager(this)
+        val div = DividerItemDecoration(
+            alarmRecycler.context,
+            LinearLayoutManager.VERTICAL
+        )
         alarmRecycler.addItemDecoration(div)
         alarmRecycler.isNestedScrollingEnabled = false
 
@@ -142,7 +146,8 @@ class ReminderActivity : AppCompatActivity() {
 
 
         alarmRecycler.apply {
-            layoutManager = LinearLayoutManager(this@ReminderActivity)
+            layoutManager =
+                LinearLayoutManager(this@ReminderActivity)
             adapter = alarmAdapter
         }
         alarmAdapter.update(alarmList)

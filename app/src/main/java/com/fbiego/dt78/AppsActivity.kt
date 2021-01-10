@@ -2,12 +2,12 @@ package com.fbiego.dt78
 
 import android.content.pm.ApplicationInfo
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.fbiego.dt78.app.MainApplication
@@ -41,13 +41,18 @@ class AppsActivity : AppCompatActivity() {
         appsAdapter = AppsAdapter(appsList, this@AppsActivity::appClicked, this)
 
         appsRecycler = findViewById<View>(R.id.recyclerAppsList) as RecyclerView
-        appsRecycler.layoutManager = LinearLayoutManager(this)
-        val div = DividerItemDecoration(appsRecycler.context, LinearLayoutManager.VERTICAL )
+        appsRecycler.layoutManager =
+            LinearLayoutManager(this)
+        val div = DividerItemDecoration(
+            appsRecycler.context,
+            LinearLayoutManager.VERTICAL
+        )
         appsRecycler.addItemDecoration(div)
         appsRecycler.isNestedScrollingEnabled = false
 
         appsRecycler.apply {
-            layoutManager = LinearLayoutManager(this@AppsActivity)
+            layoutManager =
+                LinearLayoutManager(this@AppsActivity)
             adapter = appsAdapter
         }
         appsRecycler.itemAnimator?.changeDuration = 0
