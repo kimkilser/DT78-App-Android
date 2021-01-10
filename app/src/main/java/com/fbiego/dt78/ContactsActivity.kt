@@ -7,10 +7,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.provider.ContactsContract
-import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -59,7 +59,7 @@ class ContactsActivity : AppCompatActivity() {
         val myCustomList = ContactAdapter(this, contacts, sos)
 
         customListView.adapter = myCustomList
-        customListView.setOnItemClickListener { adapterView, view, i, l ->
+        customListView.setOnItemClickListener { _, _, i, _ ->
             sos = i
             val setPref =  PreferenceManager.getDefaultSharedPreferences(this)
             val editor = setPref.edit()
@@ -67,7 +67,7 @@ class ContactsActivity : AppCompatActivity() {
             editor.apply()
             customListView.adapter = ContactAdapter(this, contacts, sos)
         }
-        customListView.setOnItemLongClickListener { adapterView, view, i, l ->
+        customListView.setOnItemLongClickListener { _, _, i, _ ->
             contacts.removeAt(i)
 
             dbHandler.insertContact(contacts)
@@ -168,7 +168,7 @@ class ContactsActivity : AppCompatActivity() {
                 phoneNo =
                     phoneNo.replace(("[^0-9\\+]").toRegex(), "")
                         .replace(("(.)(\\++)(.)").toRegex(), "$1$3")
-                var new = ContactData(contacts.size+1, name, phoneNo)
+                val new = ContactData(contacts.size+1, name, phoneNo)
                 contacts.add(new)
                 val dbHandler = MyDBHandler(this, null, null, 1)
                 dbHandler.insertContact(contacts)

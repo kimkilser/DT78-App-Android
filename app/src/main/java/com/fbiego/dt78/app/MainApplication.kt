@@ -2,7 +2,7 @@ package com.fbiego.dt78.app
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import timber.log.Timber
 import com.fbiego.dt78.BuildConfig
 

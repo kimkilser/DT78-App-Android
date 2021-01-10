@@ -1,16 +1,13 @@
 package com.fbiego.dt78.data
 
 import android.content.Context
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.fbiego.dt78.BuildConfig
 import com.fbiego.dt78.R
-import com.fbiego.dt78.app.SettingsActivity as ST
 import com.fbiego.dt78.app.ForegroundService as FG
 
 class NotifyAdapter(context: Context, private val showText: Boolean): BaseAdapter() {

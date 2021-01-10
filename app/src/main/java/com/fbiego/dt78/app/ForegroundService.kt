@@ -13,10 +13,10 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
-import android.preference.PreferenceManager
-import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.LocalBroadcastManager
+import androidx.preference.PreferenceManager
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.fbiego.dt78.BuildConfig
 import com.fbiego.dt78.MainActivity
 import com.fbiego.dt78.R

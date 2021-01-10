@@ -3,7 +3,7 @@ package com.fbiego.dt78.data
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import com.fbiego.dt78.BuildConfig
 import com.fbiego.dt78.R
 import java.lang.IllegalArgumentException

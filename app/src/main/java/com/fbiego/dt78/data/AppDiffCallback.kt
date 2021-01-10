@@ -1,6 +1,6 @@
 package com.fbiego.dt78.data
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 
 class AppDiffCallback(
     private val oldList: List<AppsData>,

@@ -12,19 +12,16 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.preference.Preference
-import android.preference.PreferenceFragment
-import android.preference.PreferenceManager
 import android.provider.Settings
-import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.preference.PreferenceManager
 import com.fbiego.dt78.BuildConfig
 import com.fbiego.dt78.MainActivity
 import com.fbiego.dt78.R
@@ -184,7 +181,7 @@ class SettingsActivity : AppCompatActivity() {
                     layout.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
                     val listView = ListView(this)
-                    val myBTlist = BtListAdapter(this, btNames.toTypedArray(), btAddress.toTypedArray(), mac)
+                    val myBTlist = BtListAdapter(this, btNames.toTypedArray(), btAddress.toTypedArray(), mac!!)
                     listView.adapter = myBTlist
 
                     listView.setOnItemClickListener { adapterView, view, j, l ->

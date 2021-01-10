@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import android.support.v4.content.LocalBroadcastManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.text.SpannableString
 import com.fbiego.dt78.app.ForegroundService.Companion.dt78
 import com.fbiego.dt78.data.Channel
@@ -53,7 +53,7 @@ class NotificationListener : NotificationListenerService() {
         val appName = applicationContext.packageManager.getApplicationLabel(appInfo)
         Timber.d("onNotificationPosted {app=${appName},id=${sbn.id},ticker=$ticker,title=$title,body=$body,posted=${sbn.postTime},package=${sbn.packageName}}")
 
-        val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())
+        val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())!!
 
         val appsChannels = parseApps(allowedPackages)
         val me: Channel? = appsChannels.singleOrNull {
@@ -98,7 +98,7 @@ class NotificationListener : NotificationListenerService() {
         val appName = applicationContext.packageManager.getApplicationLabel(appInfo)
         Timber.d("onNotificationPosted {app=${appName},id=${sbn.id},ticker=$ticker,title=$title,body=$body,posted=${sbn.postTime},package=${sbn.packageName}}")
 
-        val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())
+        val allowedPackages: MutableSet<String> = MainApplication.sharedPrefs.getStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, mutableSetOf())!!
 
         val appsChannels = parseApps(allowedPackages)
         val me: Channel? = appsChannels.singleOrNull {

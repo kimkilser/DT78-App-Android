@@ -2,9 +2,9 @@ package com.fbiego.dt78
 
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.preference.PreferenceManager
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import com.fbiego.dt78.app.SettingsActivity
 import com.fbiego.dt78.data.MyDBHandler

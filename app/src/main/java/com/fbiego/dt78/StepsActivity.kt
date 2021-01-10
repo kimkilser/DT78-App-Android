@@ -3,10 +3,10 @@ package com.fbiego.dt78
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
@@ -49,7 +49,8 @@ class StepsActivity : AppCompatActivity() {
         prev = findViewById(R.id.buttonPrev)
 
         stepRecycler = findViewById<View>(R.id.recyclerView) as RecyclerView
-        stepRecycler.layoutManager = LinearLayoutManager(this)
+        stepRecycler.layoutManager =
+            LinearLayoutManager(this)
 
         stepRecycler.isNestedScrollingEnabled = false
 
@@ -141,7 +142,8 @@ class StepsActivity : AppCompatActivity() {
             val stepAdapter = StepsAdapter(stepList, stepSize)
 
             stepRecycler.apply {
-                layoutManager = LinearLayoutManager(this@StepsActivity)
+                layoutManager =
+                    LinearLayoutManager(this@StepsActivity)
                 adapter = stepAdapter
             }
 
