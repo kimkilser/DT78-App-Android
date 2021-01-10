@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".app.ErrorLogActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -21,6 +21,6 @@
         android:text="@string/error_log"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="10dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
   </ScrollView>
