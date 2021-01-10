@@ -45,7 +45,16 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ![2](dt78_app2.jpg?raw=true "2")
 
-## Dependencies
+## Source Code
 
-This project has a dependency on the Nordic Semiconductor [`Android-BLE-Library`](https://github.com/NordicSemiconductor/Android-BLE-Library/tree/6011e63816b792505b68d78b1c32b572a8f056e3) that should be cloned along side this project's folder.
+Changes:
++ Migrated project to `androidx`
++ Included [`Android-BLE-Library`](https://github.com/NordicSemiconductor/Android-BLE-Library/tree/6011e63816b792505b68d78b1c32b572a8f056e3) as a zip file
+
+Extract as follows:
+> `~/your-folder/DT78-App-Android-master`
+
+> `~/your-folder/Android-BLE-Library`
+
+You may need to delete the `.idea` folder before syncing the project
 
