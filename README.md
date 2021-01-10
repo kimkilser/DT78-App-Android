@@ -49,7 +49,7 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 Changes:
 + Migrated project to `androidx`
-+ Included [`Android-BLE-Library`](https://github.com/NordicSemiconductor/Android-BLE-Library/tree/6011e63816b792505b68d78b1c32b572a8f056e3) as a zip file
++ Included [`Android-BLE-Library`](https://github.com/fbiego/DT78-App-Android/blob/master/Android-BLE-Library.zip) as a zip file
 
 Extract as follows:
 > `~/your-folder/DT78-App-Android-master`
