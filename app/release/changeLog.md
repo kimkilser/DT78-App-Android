@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 2.8
++ Added algorithm to parse Sleep Data
++ Added Spanish language
++ Added support for [`DIY ESP32 watch`](https://github.com/fbiego/ESP32_OLED_BLE)
+
 ## 2.7
 + Implemented sleep data (experimental)
 + Minor improvements
