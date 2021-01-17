@@ -15,13 +15,14 @@
 
 ### App Install
 
-[`DT78-App-v2.7.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.7.apk)
+[`DT78-App-v2.8.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.8.apk)
 
-Released on `Thursday, 7 January 2021 14:05 Greenwich Mean Time (GMT)`
+Released on `Sunday, 17 January 2021 13:10 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Implemented sleep data (experimental)
->+ Minor improvements
+>+ Added algorithm to parse Sleep Data
+>+ Added Spanish language
+>+ Added support for [`DIY ESP32 watch`](https://github.com/fbiego/ESP32_OLED_BLE)
 
 
 #### Translate
@@ -33,6 +34,7 @@ Released on `Thursday, 7 January 2021 14:05 Greenwich Mean Time (GMT)`
 + Indonesian
 + Portuguese
 + Russian
++ Spanish
 + Vietnamese
 
 #### Telegram
