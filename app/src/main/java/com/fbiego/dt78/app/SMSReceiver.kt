@@ -30,14 +30,16 @@ class SMSReceiver : BroadcastReceiver() {
                 ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
                 Uri.encode(smsMessage.displayOriginatingAddress)
             )
-            val c = context.contentResolver.query(
-                lookupUri,
-                arrayOf(ContactsContract.Data.DISPLAY_NAME),
-                null,
-                null,
-                null
-            )
+            var c: Cursor? = null
             try {
+                c = context.contentResolver.query(
+                    lookupUri,
+                    arrayOf(ContactsContract.Data.DISPLAY_NAME),
+                    null,
+                    null,
+                    null
+                )
+
                 if (c?.moveToFirst()!!){
                     val displayName = c.getString(0)
                     name = displayName
