@@ -15,14 +15,15 @@
 
 ### App Install
 
-[`DT78-App-v2.8.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.8.apk)
+[`DT78-App-v2.9.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.9.apk)
 
-Released on `Sunday, 17 January 2021 13:10 Greenwich Mean Time (GMT)`
+Released on `Sunday, 24 January 2021 06:35 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Added algorithm to parse Sleep Data
->+ Added Spanish language
->+ Added support for [`DIY ESP32 watch`](https://github.com/fbiego/ESP32_OLED_BLE)
+>+ Bug Fixes
+>+ Added Theme chooser
+>+ Improved Sleep Data algorithm
+>+ Added advanced error log
 
 
 #### Translate
