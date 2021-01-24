@@ -44,9 +44,9 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ### Screenshots
 
-![1](dt78_app3.jpg?raw=true "3")
+![1](dt78_app4.jpg?raw=true "3")
 
-![2](dt78_app2.jpg?raw=true "2")
+![2](dt78_app5.jpg?raw=true "2")
 
 ## Source Code
 
