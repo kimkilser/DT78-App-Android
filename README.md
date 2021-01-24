@@ -53,6 +53,7 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 Changes:
 + Migrated project to `androidx`
 + Included [`Android-BLE-Library`](https://github.com/fbiego/DT78-App-Android/blob/master/Android-BLE-Library.zip) as a zip file
++ Converted `WheelView` to `Kotlin`
 
 Extract as follows:
 > `~/your-folder/DT78-App-Android-master`
