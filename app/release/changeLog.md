@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 2.9
++ Bug Fixes
++ Added Theme chooser
++ Improved Sleep Data algorithm
++ Added advanced error log
+
 ## 2.8
 + Added algorithm to parse Sleep Data
 + Added Spanish language
