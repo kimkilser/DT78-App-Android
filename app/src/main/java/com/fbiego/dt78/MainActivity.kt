@@ -269,7 +269,7 @@ class MainActivity : AppCompatActivity(), ConnectionListener {
         per?.setImageResource(battery(FG.bat, true))
         per?.imageTintList = ColorStateList.valueOf(color(FG.bat))
 
-        if (RootUtil.isDeviceRooted()){
+        if (RootUtil.isDeviceRooted){
             cam?.visibility = View.VISIBLE
         } else {
             cam?.visibility = View.INVISIBLE
