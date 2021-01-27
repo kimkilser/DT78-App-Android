@@ -468,7 +468,7 @@ class LEManager(context: Context) : BleManager<LeManagerCallbacks>(context) {
         override fun initialize() {
             Timber.d("Initialising...")
 
-            val rooted = RootUtil.isDeviceRooted()
+            val rooted = RootUtil.isDeviceRooted
 
 
             requestMtu(MTU).enqueue()
