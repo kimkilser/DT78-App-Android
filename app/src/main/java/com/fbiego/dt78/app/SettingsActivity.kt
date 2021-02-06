@@ -167,10 +167,8 @@ class SettingsActivity : AppCompatActivity() {
                         devs = getString(R.string.not_paired)
                         val devices: Set<BluetoothDevice> = btAdapter.bondedDevices
                         for (device in devices){
-                            if (device.name.contains("Watch")) {
-                                btNames.add(device.name)
-                                btAddress.add(device.address)
-                            }
+                            btNames.add(device.name)
+                            btAddress.add(device.address)
                         }
 
                     } else {
