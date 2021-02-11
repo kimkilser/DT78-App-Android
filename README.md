@@ -15,20 +15,24 @@
 
 ### App Install
 
-[`DT78-App-v2.9.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v2.9.apk)
+[`DT78-App-v3.0.apk`](https://github.com/fbiego/DT78-App-Android/raw/master/app/release/DT78-App-v3.0.apk)
 
-Released on `Sunday, 24 January 2021 06:35 Greenwich Mean Time (GMT)`
+Released on `Thursday, 11 February 2021 08:50 Greenwich Mean Time (GMT)`
 
 [Changelog](https://github.com/fbiego/DT78-App-Android/blob/master/app/release/changeLog.md):
->+ Bug Fixes
->+ Added Theme chooser
->+ Improved Sleep Data algorithm
->+ Added advanced error log
+>+ Added Czech language
+>+ Added App level DND mode
+>+ Implemented In-App Camera from [`here`](https://github.com/mmobin789/Android-Custom-Camera) (Experimental)
+>+ Bug fixes & improvements
+
+The camera may not work on some devices and on others only the back camera may work. Rooted users can long press to switch between In-app or External camera.
+
 
 
 #### Translate
 
 [`DT78 app translations`](https://docs.google.com/spreadsheets/d/1crHcLgeA30y7-kiXHY95TBrc7-_znlTKFR2QMc66zT4/edit?usp=sharing) on Google Sheets
++ Czech
 + English
 + German
 + Greek
