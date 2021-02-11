@@ -1,5 +1,14 @@
 # ChangeLog
 
+## 3.0
++ Added Czech language
++ Added App level DND mode
++ Implemented In-App Camera from [`here`](https://github.com/mmobin789/Android-Custom-Camera) (Experimental)
++ Bug fixes & improvements
+
+The camera may not work on some devices and on others only the back camera may work. Rooted users can long press to switch between In-app or External camera.
+
+
 ## 2.9
 + Bug Fixes
 + Added Theme chooser
