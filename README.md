@@ -54,6 +54,8 @@ Join the telegram group [`DT78 Smartwatch`](https://t.me/dt78app)
 
 ## Source Code
 
+Check the [`dev branch`](https://github.com/fbiego/DT78-App-Android/tree/dev) for the updated code
+
 Changes:
 + Migrated project to `androidx`
 + Included [`Android-BLE-Library`](https://github.com/fbiego/DT78-App-Android/blob/master/Android-BLE-Library.zip) as a zip file
