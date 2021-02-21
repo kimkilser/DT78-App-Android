@@ -222,47 +222,27 @@ class AppsActivity : AppCompatActivity() {
                 val index = names.indexOf(it)
                 if (installedApps[index].packageName != smsPackage || installedApps[index].packageName != application.packageName) {
 
-                    var applicationInfo: ApplicationInfo? = null
-                    try {
-                        applicationInfo = packageManager.getApplicationInfo(getApplicationInfo().packageName, 0)
+                    //-------------------------------------------------------------------------
+                    // {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
+                    //-------------------------------------------------------------------------
+                    val icon = installedApps[index].loadIcon(packageManager)
 
-                        if (applicationInfo != null) {
-                            var label = packageManager.getApplicationLabel(applicationInfo)
-
-                            if(!TextUtils.isEmpty(label)) {
-
-                                //-------------------------------------------------------------------------
-                                // {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
-                                //-------------------------------------------------------------------------
-                                val icon = installedApps[index].loadIcon(packageManager)
-
-                                appsList.add(
-                                    AppsData(
-                                        icon,
-                                        it,
-                                        //installedApps[index].packageName,
-                                        label.toString(),
-                                        filter[index].icon,
-                                        checkedItems[index],
-                                        true,
-                                        filter[index].filters
-                                    )
-                                )
-                                appNames.add(/*installedApps[index].packageName*/label.toString())
-                                if (checkedItems[index]) {
-                                    appChanel.add(filter[index])
-                                    appsPref.add(filter[index].app)
-                                }
-                            }
-
-                        }
-                        else {
-
-                        }
-
-                    } catch (e: PackageManager.NameNotFoundException) {
+                    appsList.add(
+                        AppsData(
+                            icon,
+                            it,
+                            installedApps[index].packageName,
+                            filter[index].icon,
+                            checkedItems[index],
+                            true,
+                            filter[index].filters
+                        )
+                    )
+                    appNames.add(installedApps[index].packageName)
+                    if (checkedItems[index]) {
+                        appChanel.add(filter[index])
+                        appsPref.add(filter[index].app)
                     }
-
                 }
             }
 
