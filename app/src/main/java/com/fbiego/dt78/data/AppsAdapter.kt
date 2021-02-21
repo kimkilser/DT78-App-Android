@@ -56,6 +56,7 @@ class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData
     class DataHolder(itemView: View, private val notifyAdapter: NotifyAdapter) : RecyclerView.ViewHolder(itemView){
         private val mName: TextView = itemView.findViewById(R.id.appName)
         val mCheckBox: CheckBox = itemView.findViewById(R.id.appChecked)
+        private val mAppIcon: ImageView = itemView.findViewById(R.id.appIcon)
         private val mIcon: ImageView = itemView.findViewById(R.id.appFilter)
         val mSpinner: Spinner = itemView.findViewById(R.id.appSpinner)
         private val mUnlock: ImageView = itemView.findViewById(R.id.screenUnlocked)
@@ -71,8 +72,9 @@ class AppsAdapter(appsData: ArrayList<AppsData>, private val listener: (AppsData
             if (apps.channel == 0){
                 apps.channel = checkPackage(apps.packageName, Watch(id).iconSet)
             }
+
             //mIcon.setImageResource(icons(apps.channel))
-            mIcon.setImageDrawable(apps.icon)
+            mAppIcon.setImageDrawable(apps.icon)
 
             mSpinner.adapter = notifyAdapter
 

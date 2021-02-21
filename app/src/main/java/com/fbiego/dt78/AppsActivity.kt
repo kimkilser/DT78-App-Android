@@ -10,15 +10,9 @@ import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import android.provider.Settings
 import android.provider.Telephony
-import androidx.core.app.ActivityCompat
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -28,7 +22,14 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat
+import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fbiego.dt78.app.MainApplication
 import com.fbiego.dt78.data.*
 import kotlinx.android.synthetic.main.activity_apps.*
@@ -167,7 +168,14 @@ class AppsActivity : AppCompatActivity() {
             loadingLayout.visibility = View.VISIBLE
             loadingApps = true
 
-            AsyncTask.THREAD_POOL_EXECUTOR.execute(AppsLoader(this@AppsActivity, pref.getBoolean(ST.PREF_NEW_SEP, false)))
+            AsyncTask.THREAD_POOL_EXECUTOR.execute(
+                AppsLoader(
+                    this@AppsActivity, pref.getBoolean(
+                        ST.PREF_NEW_SEP,
+                        false
+                    )
+                )
+            )
         } else {
             loadingLayout.visibility = View.GONE
         }
@@ -177,7 +185,11 @@ class AppsActivity : AppCompatActivity() {
         smsState.isChecked = pref.getBoolean(ST.PREF_SMS, false) && smsCheck()
         dndSms.imageTintList = dndColor(pref.getBoolean(ST.PREF_SHOW_SMS, false))
         dndCall.imageTintList = dndColor(pref.getBoolean(ST.PREF_SHOW_CALL, false))
-        dndIcon.imageTintList = dndColor((pref.getBoolean(ST.PREF_DND_UNLOCK, false) && isScreenLockSet(this) )|| pref.getBoolean(ST.PREF_DND_SCREEN, false))
+        dndIcon.imageTintList = dndColor(
+            (pref.getBoolean(ST.PREF_DND_UNLOCK, false) && isScreenLockSet(
+                this
+            )) || pref.getBoolean(ST.PREF_DND_SCREEN, false)
+        )
         unlocked.isChecked = (pref.getBoolean(ST.PREF_DND_UNLOCK, false) && isScreenLockSet(this))
         screenOn.isChecked = pref.getBoolean(ST.PREF_DND_SCREEN, false)
 
@@ -192,7 +204,12 @@ class AppsActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    fun appsLoaded(names: Array<String>, installedApps: MutableList<ApplicationInfo>, filter: ArrayList<Channel>, checkedItems: BooleanArray){
+    fun appsLoaded(
+        names: Array<String>,
+        installedApps: MutableList<ApplicationInfo>,
+        filter: ArrayList<Channel>,
+        checkedItems: BooleanArray
+    ){
 
         runOnUiThread {
             val smsPackage = Telephony.Sms.getDefaultSmsPackage(this.applicationContext)
@@ -205,31 +222,51 @@ class AppsActivity : AppCompatActivity() {
                 val index = names.indexOf(it)
                 if (installedApps[index].packageName != smsPackage || installedApps[index].packageName != application.packageName) {
 
-                  	//-------------------------------------------------------------------------
-	               	// {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
-	               	//-------------------------------------------------------------------------
-	               	val icon = installedApps[index].loadIcon(packageManager)
-                
-                    appsList.add(
-                        AppsData(
-                        	icon,
-                            it,
-                            installedApps[index].packageName,
-                            filter[index].icon,
-                            checkedItems[index],
-                            true,
-                            filter[index].filters
-                        )
-                    )
-                    appNames.add(installedApps[index].packageName)
-                    if (checkedItems[index]) {
-                        appChanel.add(filter[index])
-                        appsPref.add(filter[index].app)
+                    var applicationInfo: ApplicationInfo? = null
+                    try {
+                        applicationInfo = packageManager.getApplicationInfo(getApplicationInfo().packageName, 0)
+
+                        if (applicationInfo != null) {
+                            var label = packageManager.getApplicationLabel(applicationInfo)
+
+                            if(!TextUtils.isEmpty(label)) {
+
+                                //-------------------------------------------------------------------------
+                                // {add application Icon} : 2020-12-15 00:54:01 - by leejh(woono)
+                                //-------------------------------------------------------------------------
+                                val icon = installedApps[index].loadIcon(packageManager)
+
+                                appsList.add(
+                                    AppsData(
+                                        icon,
+                                        it,
+                                        //installedApps[index].packageName,
+                                        label.toString(),
+                                        filter[index].icon,
+                                        checkedItems[index],
+                                        true,
+                                        filter[index].filters
+                                    )
+                                )
+                                appNames.add(/*installedApps[index].packageName*/label.toString())
+                                if (checkedItems[index]) {
+                                    appChanel.add(filter[index])
+                                    appsPref.add(filter[index].app)
+                                }
+                            }
+
+                        }
+                        else {
+
+                        }
+
+                    } catch (e: PackageManager.NameNotFoundException) {
                     }
+
                 }
             }
 
-            appsList.sortWith(compareBy({!it.enabled}, {it.name}))
+            appsList.sortWith(compareBy({ !it.enabled }, { it.name }))
             appsAdapter.swap(appsList)
 
             loadingApps = false
@@ -249,7 +286,7 @@ class AppsActivity : AppCompatActivity() {
 
                     val exclude = ArrayList<String>()
                     exclude.addAll(appsData.filters)
-                    builder.setMessage(appsData.packageName+"\n"+getString(R.string.filter_info))
+                    builder.setMessage(appsData.packageName + "\n" + getString(R.string.filter_info))
                     val inflater = layoutInflater
                     val dialogInflater = inflater.inflate(R.layout.filter_layout, null)
                     val editText = dialogInflater.findViewById<EditText>(R.id.filterEdit)
@@ -264,10 +301,10 @@ class AppsActivity : AppCompatActivity() {
                     listView.adapter = listAdapter
                     builder.setView(dialogInflater)
 
-                    editText.setOnEditorActionListener{ _, i, _ ->
-                        if (i == EditorInfo.IME_ACTION_GO){
+                    editText.setOnEditorActionListener { _, i, _ ->
+                        if (i == EditorInfo.IME_ACTION_GO) {
                             val string = editText.text.toString()
-                            if (!exclude.contains(string) && string.trim().isNotEmpty()){
+                            if (!exclude.contains(string) && string.trim().isNotEmpty()) {
                                 exclude.add(editText.text.toString())
                                 listAdapter.notifyDataSetChanged()
                             }
@@ -278,20 +315,24 @@ class AppsActivity : AppCompatActivity() {
                         }
                     }
 
-                    listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, _, p2, _ ->
-                        exclude.removeAt(p2)
-                        listAdapter.notifyDataSetChanged()
-                        true
-                    }
+                    listView.onItemLongClickListener =
+                        AdapterView.OnItemLongClickListener { _, _, p2, _ ->
+                            exclude.removeAt(p2)
+                            listAdapter.notifyDataSetChanged()
+                            true
+                        }
 
-                    builder.setPositiveButton(R.string.save){_, _ ->
+                    builder.setPositiveButton(R.string.save) { _, _ ->
                         val string = editText.text.toString()
-                        if (!exclude.contains(string) && string.trim().isNotEmpty()){
+                        if (!exclude.contains(string) && string.trim().isNotEmpty()) {
                             exclude.add(editText.text.toString())
                         }
-                        if (scrSwc.isChecked) {exclude.add(sON)}
+                        if (scrSwc.isChecked) {
+                            exclude.add(sON)
+                        }
                         val index = appsPref.indexOf(appsData.packageName)
-                        val index2 = appsList.indexOfFirst{it.packageName == appsData.packageName}
+                        val index2 =
+                            appsList.indexOfFirst { it.packageName == appsData.packageName }
                         appChanel[index].filters = exclude
                         appsList[index2].filters = exclude
                         appsAdapter.notifyItemChanged(index2)
@@ -305,7 +346,7 @@ class AppsActivity : AppCompatActivity() {
             1 -> {
 
                 //Toast.makeText(this, (if (state) "Enabled" else "Disabled") +" ${appsData.name}", Toast.LENGTH_SHORT).show()
-                if (state){
+                if (state) {
                     appsPref.add(appsData.packageName)
                     appChanel.add(Channel(appsData.channel, appsData.packageName, appsData.filters))
                 } else {
@@ -320,7 +361,7 @@ class AppsActivity : AppCompatActivity() {
             2 -> {
 
                 //Toast.makeText(this, "Clicked ${appsData.name} icon to: $icon", Toast.LENGTH_SHORT).show()
-                if (appsPref.contains(appsData.packageName)){
+                if (appsPref.contains(appsData.packageName)) {
                     val index = appsPref.indexOf(appsData.packageName)
                     appChanel[index].icon = icon
                 }
@@ -343,7 +384,10 @@ class AppsActivity : AppCompatActivity() {
             }
         }
         if (!loadingApps){
-            MainApplication.sharedPrefs.edit().putStringSet(MainApplication.PREFS_KEY_ALLOWED_PACKAGES, modifiedList.toSet()).apply()
+            MainApplication.sharedPrefs.edit().putStringSet(
+                MainApplication.PREFS_KEY_ALLOWED_PACKAGES,
+                modifiedList.toSet()
+            ).apply()
         }
 
         pref.edit().putBoolean(ST.PREF_NEW_SEP, true).apply()
@@ -368,7 +412,10 @@ class AppsActivity : AppCompatActivity() {
     }
 
     private fun checkContactPermission(): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission( this@AppsActivity, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(
+                this@AppsActivity,
+                Manifest.permission.READ_CONTACTS
+            ) != PackageManager.PERMISSION_GRANTED) {
             return false
         }
         return true
@@ -376,7 +423,7 @@ class AppsActivity : AppCompatActivity() {
 
     private fun checkSmsPermission(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission( this@AppsActivity, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+            && ActivityCompat.checkSelfPermission(this@AppsActivity, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
             return false
         }
         return true
@@ -384,44 +431,55 @@ class AppsActivity : AppCompatActivity() {
 
 
     private fun checkCallPermission(): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission( this@AppsActivity, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(
+                this@AppsActivity,
+                Manifest.permission.READ_PHONE_STATE
+            ) != PackageManager.PERMISSION_GRANTED) {
             return false
         }
         return true
     }
 
     private fun checkCallLogPermission(): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission( this@AppsActivity, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(
+                this@AppsActivity,
+                Manifest.permission.READ_CALL_LOG
+            ) != PackageManager.PERMISSION_GRANTED) {
             return false
         }
         return true
     }
 
     private fun requestContactPermission(){
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+            this,
             arrayOf(Manifest.permission.READ_CONTACTS), MainActivity.PERMISSION_CONTACT
         )
     }
 
     private fun requestContactPermissions(){
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+            this,
             arrayOf(Manifest.permission.READ_CONTACTS), MainActivity.PERMISSIONS_CONTACTS
         )
     }
 
     private fun requestCallLogPermission(){
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+            this,
             arrayOf(Manifest.permission.READ_CALL_LOG), MainActivity.PERMISSION_CALL_LOG
         )
     }
 
     private fun requestSMSPermissions() {
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+            this,
             arrayOf(Manifest.permission.READ_SMS), MainActivity.PERMISSION_SMS
         )
     }
     private fun requestCallPermissions() {
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+            this,
             arrayOf(Manifest.permission.READ_PHONE_STATE), MainActivity.PERMISSION_CALL
         )
     }
@@ -493,7 +551,11 @@ class AppsActivity : AppCompatActivity() {
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         Timber.d("Request code: $requestCode  Result:${grantResults[0]}")
 
         if (requestCode == MainActivity.PERMISSION_CALL && grantResults[0] == PackageManager.PERMISSION_GRANTED){
