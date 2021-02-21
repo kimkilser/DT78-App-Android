@@ -1126,13 +1126,20 @@ class ForegroundService : Service(), MessageListener, PhonecallListener, DataLis
         }
 
         if (data.size() == 20){
-            if (data.getByte(4) == (0x92).toByte()){
+            if (data.getByte(4) == (0x92).toByte() || data.getByte(4) == (0x51).toByte()){
 
                 data.getByte(6) //major version
                 data.getByte(7) //minor version
 
                 when (data.getByte(17)) {
                     (0x60).toByte() -> {
+                        //dt78
+                        dt78 = DT78
+                        if (data.getByte(15) == (0x08).toByte()){
+                            dt78 = T03    //T03
+                        }
+                    }
+                    (0x61).toByte() -> {
                         //dt78
                         dt78 = DT78
                         if (data.getByte(15) == (0x08).toByte()){
