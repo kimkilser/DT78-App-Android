@@ -2,9 +2,9 @@
 <resources>
 
 
-    <color name="colorWindowBackground">#cfcfcf</color>
+    <color name="colorWindowBackground">#ffffff</color>
     <color name="colorTransparent">#0fff</color>
-    <color name="colorCardBackground">#fff</color>
+    <color name="colorCardBackground">#cfcfcf</color>
 
     <color name="colorPrimaryGreen">#2abf34</color>
     <color name="colorPrimaryDarkGreen">#18731e</color>

@@ -22,21 +22,28 @@
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="8dp"
         android:onClick="onClick"
-         app:cardBackgroundColor="@color/colorCardBackground"
+        app:cardBackgroundColor="@color/colorCardBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dt78_back" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_height="140dp"
+            android:padding="10dp"
+            android:background="#afffffff">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/ic_watch"
                 android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -404,6 +411,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/user"
+                    android:layout_margin="10dp"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -439,6 +447,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_margin="10dp"
                     android:text="@string/reminder"
                     android:textSize="14sp" />
 
@@ -474,6 +483,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_margin="10dp"
                     android:text="@string/settings"
                     android:textSize="14sp" />
 
@@ -593,6 +603,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_margin="10dp"
                         android:text="@string/find_w"
                         android:textSize="14sp" />
 
@@ -629,6 +640,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_margin="10dp"
                         android:text="@string/test"
                         android:textSize="14sp" />
 
@@ -665,6 +677,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_margin="10dp"
                         android:text="@string/camera"
                         android:textSize="14sp" />
 

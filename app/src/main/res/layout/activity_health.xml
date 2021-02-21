@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            app:cardCornerRadius="8dp"
              app:cardBackgroundColor="?attr/colorCardBackgroundDark"
             android:onClick="change">
 
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            app:cardCornerRadius="8dp"
             app:cardBackgroundColor="?attr/colorCardBackgroundDark"
             android:onClick="change">
 
@@ -64,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            app:cardCornerRadius="8dp"
             app:cardBackgroundColor="?attr/colorCardBackgroundDark"
             android:onClick="change">
 
@@ -89,6 +92,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
+        app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@color/colorCardBackground"
         android:onClick="measure"
         app:layout_constraintTop_toBottomOf="@id/linearLayout">

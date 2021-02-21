@@ -74,7 +74,7 @@
     <string name="loading">로딩…</string>
     <string name="steps">steps</string>
     <string name="mmHg">mmHg</string>
-    <string name="bpm">키</string>
+    <string name="bpm">bpm</string>
     <string name="start_measure">측정을 시작하려면 터치하세요</string>
     <string name="stop_measure">측정을 중지하려면 터치하세요</string>
     <string name="customization">커스텀화</string>

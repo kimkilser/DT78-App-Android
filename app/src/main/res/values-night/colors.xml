@@ -7,7 +7,7 @@
     <color name="colorWindowBackground">#000</color>
     <color name="colorButtonDisabledGreen">#05290f</color>
     <color name="colorButtonEnabledGreen">#25892f</color>
-    <color name="colorCardBackground">#111</color>
+    <color name="colorCardBackground">#cfcfcf</color>
     <color name="colorCardBackgroundLightGreen">#232</color>
     <color name="colorCardBackgroundDarkGreen">#222</color>
     <color name="colorIconsGreen">#2aff34</color>

@@ -42,6 +42,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintWidth_percent="0.7"
                 app:layout_constraintHeight_percent="1"
+                app:cardCornerRadius="8dp"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:layout_constraintStart_toEndOf="@+id/space3"
                 app:layout_constraintTop_toTopOf="parent">
@@ -82,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
              app:cardBackgroundColor="@color/colorCardBackground"
             app:layout_constraintTop_toBottomOf="@id/layoutTop">
 
