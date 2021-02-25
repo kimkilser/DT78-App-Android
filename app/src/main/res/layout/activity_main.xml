@@ -416,8 +416,8 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
                     android:src="@raw/user"
                     app:tint="?attr/colorIcons" />
             </LinearLayout>
@@ -453,8 +453,8 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="30dp"                    
+                    android:layout_margin="10dp"
                     android:src="@raw/alarm"
                     app:tint="?attr/colorIcons" />
             </LinearLayout>
@@ -489,8 +489,9 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:src="@raw/watch"
                     app:tint="?attr/colorIcons" />
             </LinearLayout>
@@ -609,8 +610,8 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
                         android:src="@drawable/ic_find"
                         app:tint="?attr/colorIcons" />
                 </LinearLayout>
@@ -646,8 +647,8 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
                         android:src="@drawable/ic_send"
                         app:tint="?attr/colorIcons" />
                 </LinearLayout>
@@ -684,8 +685,8 @@
                     <ImageView
                         android:id="@+id/cameraIcon"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
                         android:src="@drawable/ic_camera"
                         app:tint="?attr/colorIcons" />
                 </LinearLayout>
