@@ -100,7 +100,7 @@
                     android:id="@+id/donutChart"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:chart_donutThickness="12dp"
+                    app:chart_donutThickness="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/linearLayout4"
                     app:chart_donutBackgroundColor="@color/colorWindowBackground"
@@ -126,8 +126,11 @@
                     app:layout_constraintTop_toBottomOf="@id/linearLayout4"
                     app:chart_smoothLine="true"
                     app:chart_axis="none"
-                    app:chart_lineThickness="1dp"
+                    app:chart_lineThickness="3dp"
                     app:chart_lineColor="?attr/colorIcons"
+                    app:chart_gridEffect="dotted"
+                    app:chart_labelsColor="#FF70977F"
+                    app:chart_labelsSize="10sp"
                     />
 
             </LinearLayout>

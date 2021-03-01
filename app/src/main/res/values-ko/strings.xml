@@ -40,7 +40,7 @@
     <string name="setup_desc">시계 Mac Address 설정</string>
     <string name="hrm">심박수</string>
     <string name="bph">혈압</string>
-    <string name="sp02">혈중 산소 포화도</string>
+    <string name="sp02">산소 포화도</string>
     <string name="user">사용자</string>
     <string name="reminder">알림</string>
     <string name="find_w">시계 찾기</string>
