@@ -490,7 +490,6 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_margin="5dp"
                     android:layout_margin="10dp"
                     android:src="@raw/watch"
                     app:tint="?attr/colorIcons" />
