@@ -3,11 +3,11 @@
 
     <color name="colorPrimaryGreen">#000</color> <!-- #18731e -->
     <color name="colorPrimaryDarkGreen">#000</color> <!--#18731e-->
-    <color name="colorAccentGreen">#2aff34</color>
+    <color name="colorAccentGreen">#BF2aff34</color>
     <color name="colorWindowBackground">#000</color>
     <color name="colorButtonDisabledGreen">#05290f</color>
     <color name="colorButtonEnabledGreen">#25892f</color>
-    <color name="colorCardBackground">#cfcfcf</color>
+    <color name="colorCardBackground">#66CFCFCF</color>
     <color name="colorCardBackgroundLightGreen">#232</color>
     <color name="colorCardBackgroundDarkGreen">#222</color>
     <color name="colorIconsGreen">#2aff34</color>
@@ -15,7 +15,7 @@
 
     <color name="colorPrimaryRed">#000</color>
     <color name="colorPrimaryDarkRed">#000</color>
-    <color name="colorAccentRed">#ff243a</color>
+    <color name="colorAccentRed">#BFFF243A</color>
     <color name="colorButtonDisabledRed">#29050f</color>
     <color name="colorButtonEnabledRed">#89252f</color>
     <color name="colorCardBackgroundLightRed">#322</color><!--#95f99f-->
@@ -24,7 +24,7 @@
 
     <color name="colorPrimaryPurple">#000</color>
     <color name="colorPrimaryDarkPurple">#000</color>
-    <color name="colorAccentPurple">#ff24a3</color>
+    <color name="colorAccentPurple">#BFff24a3</color>
     <color name="colorButtonDisabledPurple">#290520</color>
     <color name="colorButtonEnabledPurple">#d94df5</color>
     <color name="colorCardBackgroundLightPurple">#323</color><!--#95f99f-->
@@ -33,7 +33,7 @@
 
     <color name="colorPrimaryBlue">#000</color>
     <color name="colorPrimaryDarkBlue">#000</color>
-    <color name="colorAccentBlue">#3a24ff</color>
+    <color name="colorAccentBlue">#BF3a24ff</color>
     <color name="colorButtonDisabledBlue">#0f0529</color>
     <color name="colorButtonEnabledBlue">#2f2589</color>
     <color name="colorCardBackgroundLightBlue">#223</color><!--#95f99f-->
