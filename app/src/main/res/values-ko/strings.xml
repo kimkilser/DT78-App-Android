@@ -230,7 +230,7 @@
     <string name="notifications">알림</string>
     <string name="not_list">알림 설정</string>
     <string name="load_apps">APP을 로딩중 ...</string>
-    <string name="filter_info">다른 필터를 추가하려면 선택, 삭제 하며련 삭제할 항목을 길게 누르세요</string>
+    <string name="filter_info">다른 필터를 추가하려면 선택, 삭제 하려면 삭제할 항목을 길게 누르세요</string>
     <string name="find_phone">휴대폰 찾기</string>
     <string name="battery_icon">배터리 아이콘</string>
     <string name="bat_charging">[_______충전중________]</string>
