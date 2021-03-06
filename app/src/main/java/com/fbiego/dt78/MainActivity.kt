@@ -125,8 +125,8 @@ class MainActivity : AppCompatActivity(), ConnectionListener {
 //        mChart.setDataList(dataList)
 //        mChart.build()
 
-        barChart.fillColor = this.getColorFromAttr(R.attr.colorIcons)
-        //barChart.gradientFillColors = intArrayOf(this.getColorFromAttr(R.attr.colorIcons), ContextCompat.getColor(this, R.color.colorTransparent))
+        //barChart.fillColor = this.getColorFromAttr(R.attr.colorIcons)
+        barChart.gradientFillColors = intArrayOf(this.getColorFromAttr(R.attr.colorIcons), ContextCompat.getColor(this, R.color.colorTransparent))
         barChart.scale = Scale((max * -0.03).toFloat(), max.toFloat()+500)
         //barChart.labelsFormatter = { "${it.roundToInt()}" }
         barChart.animate(data)

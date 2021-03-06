@@ -3,6 +3,7 @@ package com.fbiego.dt78
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +20,11 @@ import com.fbiego.dt78.app.SettingsActivity
 import com.fbiego.dt78.data.*
 import com.hadiidbouk.charts.BarData
 import com.hadiidbouk.charts.ChartProgressBar
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_steps.*
 import kotlinx.android.synthetic.main.activity_steps.barChart
+import kotlinx.android.synthetic.main.activity_steps.donutChart
+import kotlinx.android.synthetic.main.activity_steps.targetSteps
 import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
@@ -236,8 +240,8 @@ class StepsActivity : AppCompatActivity() {
 
 
 
-        barChart.fillColor = this.getColorFromAttr(R.attr.colorIcons)
-        //barChart.gradientFillColors = intArrayOf(this.getColorFromAttr(R.attr.colorIcons), ContextCompat.getColor(this, R.color.colorTransparent))
+        //barChart.fillColor = this.getColorFromAttr(R.attr.colorIcons)
+        barChart.gradientFillColors = intArrayOf(this.getColorFromAttr(R.attr.colorIcons), ContextCompat.getColor(this, R.color.colorTransparent))
         barChart.scale = Scale((max * -0.03).toFloat(), max.toFloat()+500)
         //barChart.labelsFormatter = { "${it.roundToInt()}" }
         barChart.animate(data)

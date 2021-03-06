@@ -265,7 +265,7 @@ fun appName(id: Int): String{
         0 -> "Message"
         1 -> "WhatsApp"
         2 -> "Twitter"
-        4 -> "Twitter"
+        4 -> "Instagram"
         5 -> "Facebook"
         6 -> "Messenger"
         7 -> "Skype"
